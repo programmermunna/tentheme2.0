@@ -1,0 +1,37 @@
+
+.chat_area {
+    height: 500px;
+    box-shadow: 0px 0px 2px gray;
+    overflow: auto;
+}
+
+.person {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #8080807c;
+    display: flex;
+    justify-content: space-between;
+}
+.person>.img {
+    width: 10%;
+}
+.person>.img>img {
+    width: 50px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+.person>.img p {
+    text-align: center;
+    margin-top: 10px;
+}
+.person>.message {
+    width: 88%;
+}
+.person>.message> p {
+    margin-top: 10px;
+    opacity: .5;
+}
+.user_chat{
+    background: #48474715;
+}
