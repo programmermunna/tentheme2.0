@@ -34,10 +34,10 @@
                             </div>
                             <ul class="pb-3">
                             <?php 
-                            $all_ctg = _get("category","id !='' LIMIT 10");
+                            $all_ctg = _get("category","type='Post' LIMIT 10");
                             while($ctg = mysqli_fetch_assoc($all_ctg)){
                                 $ctg_name = $ctg['category'];
-                            ?> <a href="posts.php?category=<?php echo $ctg_name['category']?>">
+                            ?> <a href="posts.php?category=<?php echo $ctg_name?>">
                                     <li
                                         class="w-full flex items-center justify-between text-sm p-2 hover:bg-cyan-800 hover:text-white rounded">
                                         <span><?php echo $ctg['category']?></span>

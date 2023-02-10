@@ -3,10 +3,12 @@
  if($cr_index=='services'){
     $index = 'service';
     $index2 = 'service';
+    $type = 'service';
     }else{
       $index = 'products';
       $index2 = 'products';
-    }
+      $type = 'Product';
+  }
 
 ?>
       <div class="sticky -top-52 w-full lg:min-w-[350px] lg:w-[350px]">
@@ -43,7 +45,7 @@
                 <ul class="pb-3">
 
                   <?php 
-                  $all_ctg = _get("category","id !='' LIMIT 10");
+                  $all_ctg = _get("category","type='$type' LIMIT 10");
                   while($ctg = mysqli_fetch_assoc($all_ctg)){
                     $ctg_name = $ctg['category'];
                   ?>
