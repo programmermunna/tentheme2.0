@@ -35,3 +35,7 @@
 .user_chat{
     background: #48474715;
 }
+
+.top_link a{
+    padding-left: 20px;
+}

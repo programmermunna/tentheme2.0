@@ -84,6 +84,19 @@
               <span>Dashboard</span>
             </a>
           </li>
+          <!-- <li>
+            <a  href="./category.php">
+              <i class="fa-brands fa-squarespace"></i>
+              <span>Category</span>
+            </a>
+          </li> -->
+          <!-- <li>
+            <a  href="./users.php">
+              <i class="fa-solid fa-users"></i>
+              <span>Users</span>
+              <?php if($notify_person>0){ ?><span style="background:#ff3a10;color:#fff;padding:5px;border-radius:50%">0<?php echo $notify_person?></span><?php }?>
+            </a>
+          </li> -->
         </ul>
       </div>
       <hr class="my-0">  
@@ -154,14 +167,7 @@
         </ul>
       </div>
       <hr class="my-0">
-      
-      <div style="margin:16px;">
-        <a href="./users.php">
-          <i class="fa-solid fa-briefcase"></i> 
-          <span>All Users</span>
-        </a>
-      </div>
-      <hr class="my-0">
+
       
       <!-- Sidebar Item -> Deposit -->
       <div class="sidebar_item overflow-hidden">
