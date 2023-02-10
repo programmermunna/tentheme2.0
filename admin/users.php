@@ -7,18 +7,9 @@
   }
 ?>
 <?php
-
-
-
-$all_item = 500;
-$published_item = 300;
-$pending_item = 200;
-
-
-
-
-
-
+$all_person = mysqli_num_rows(_get("person","role!='Admin'"));
+$moderators_list = mysqli_num_rows(_get("person","role='Moderator'"));
+$users_list = mysqli_num_rows(_get("person","role='User'"));
 ?>
 <div class="x_container space-y-10 py-10">
     <div class="flex flex-col rounded-lg shadow-md border border-[
@@ -58,9 +49,9 @@ $pending_item = 200;
                   ?>
                   <form action="" method="POST">
                     <div class="top_link">
-                      <a href="users.php">All (<?php echo $all_item?>)</a> |
-                      <a href="users.php?role=Moderator">Moderators (<?php echo $published_item?>)</a> |
-                      <a href="users.php?role=User">Users (<?php echo $pending_item?>)</a> |
+                      <a href="users.php">All (<?php echo $all_person?>)</a> |
+                      <a href="users.php?role=Moderator">Moderators (<?php echo $moderators_list?>)</a> |
+                      <a href="users.php?role=User">Users (<?php echo $users_list?>)</a> |
                       <input type="submit" name="check" value="Delete">
                     </div>
                     <!-- Table -->

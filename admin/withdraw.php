@@ -63,7 +63,7 @@ $pending_item = 200;
                   <form action="" method="POST">
                     <div class="top_link">
                       <a href="withdraw.php">All (<?php echo $all_item?>)</a> |
-                      <a href="withdraw.php?status=Publish">Published (<?php echo $published_item?>)</a> |
+                      <a href="withdraw.php?status=Success">Success (<?php echo $published_item?>)</a> |
                       <a href="withdraw.php?status=Pending">Pending (<?php echo $pending_item?>)</a> |
                       <input type="submit" name="check" value="Delete">
                     </div>

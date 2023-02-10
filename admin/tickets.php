@@ -32,18 +32,10 @@ if(isset($_GET['action'])){
 ?>
 
 <?php
-
-
-
-$all_item = 500;
-$published_item = 300;
-$pending_item = 200;
-
-
-
-
-
-
+$all_item = mysqli_num_rows(_getAll("tickets"));
+$pending_item = mysqli_num_rows(_get("tickets","status='Pending'"));
+$open_item = mysqli_num_rows(_get("tickets","status='Open'"));
+$solved_item = mysqli_num_rows(_get("tickets","status='Solved'"));
 ?>
 <div class="x_container space-y-10 py-10">
     <div class="flex flex-col rounded-lg shadow-md border border-[
@@ -84,9 +76,9 @@ $pending_item = 200;
                     <!-- Table -->
                     <div class="top_link">
                       <a href="tickets.php">All (<?php echo $all_item?>)</a> |
-                      <a href="tickets.php?status=Pending">Pending (<?php echo $published_item?>)</a> |
-                      <a href="tickets.php?status=Open">Open (<?php echo $pending_item?>)</a> |
-                      <a href="tickets.php?status=Solved">Solved (<?php echo $pending_item?>)</a> |
+                      <a href="tickets.php?status=Pending">Pending (<?php echo $pending_item?>)</a> |
+                      <a href="tickets.php?status=Open">Open (<?php echo $open_item?>)</a> |
+                      <a href="tickets.php?status=Solved">Solved (<?php echo $solved_item?>)</a> |
                       <input type="submit" name="check" value="Delete">
                     </div>
                     <table class="min-w-full divide-y divide-gray-200 table-fixed">

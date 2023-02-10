@@ -1,10 +1,6 @@
 <?php include("common/header-sidebar.php");?>
 <?php
-
-$all_item = 500;
-$published_item = 300;
-$pending_item = 200;
-
+$all_item = mysqli_num_rows(_get("category","type='Service'"));
 ?>
 <div class="x_container space-y-10 py-10">
     <div class="flex flex-col rounded-lg shadow-md border border-[

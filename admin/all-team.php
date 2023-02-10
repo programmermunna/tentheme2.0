@@ -1,4 +1,9 @@
 <?php include("common/header-sidebar.php");?>
+<?php
+$all_item = mysqli_num_rows(_getAll("team"));
+$published_item = mysqli_num_rows(_get("team","status='Published'"));
+$pending_item = mysqli_num_rows(_get("team","status='unpublished'"));
+?>
 <div class="x_container space-y-10 py-10">
     <div class="flex flex-col rounded-lg shadow-md border border-[] shadow-gray-200 bg-white">
         <div class="overflow-x-auto rounded-lg">
@@ -6,33 +11,10 @@
                 <div class="overflow-auto bg-white">
                   <div style="display:flex;justify-content:space-between">
                     <div style="display:flex">
-                      <select style="margin: 15px;width:300px;" name="" class="input" id="status">
-                          <?php if(isset($_GET['src'])){?>
-                          <option style="display:none" selected value="<?php echo $_GET['src']?>"><?php echo $_GET['src']?></option>
-                          <?php }else{?>
-                          <option style="display:none" selected>Status</option>
-                          <?php }?>
-                          <option value="Unpublished">Unpublished</option>
-                          <option value="Published">Published</option>
-                      </select>
-
                       <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="all-team.php"> <i class="fa-solid fa-rotate-right"></i> Refresh</a>
-
-                      <script type="text/javascript">
-                          $(function () {
-                              $('#status').on('change', function () {
-                                  var val = $(this).find("option:selected").val();
-                                  var url = self.location.href.split('?')[0] + '?status=' +val;
-                                  if (url != "") {
-                                      window.location.href = url;
-                                  }
-                              });
-                          });
-                      </script>
                     </div>
-
                     <div>
-                      <form action="" method="GET">
+                      
                         <div style="text-align: right;margin: 5px;padding-top: 10px;">
                             <input name="src" type="search" id="srcvalue" placeholder="Search Here..." style="padding: 8px;border: 2px solid #ddd;border-radius:5px;">
                             <button type="submit" name="search" style="padding: 9px 15px;margin-right: 12px;background: #0e33f78a;color:#fff;box-sizing: border-box;border-radius: 2px;">Search</button>
@@ -54,12 +36,19 @@
                   }
                   ?>
                   <form action="" method="POST">
+                  <form action="" method="GET">
+                      <div class="top_link">
+                      <a href="all-team.php">All (<?php echo $all_item?>)</a> |
+                      <a href="all-team.php?status=Published">Published (<?php echo $published_item?>)</a> |
+                      <a href="all-team.php?status=Unpublished">Unpublished (<?php echo $pending_item?>)</a> |
+                      <input type="submit" name="check" value="Delete">
+                    </div>
                     <!-- Table -->
-                    <table class="min-w-full divide-y divide-gray-200 table-fixed">
+                  <table class="min-w-full divide-y divide-gray-200 table-fixed">
                   <thead class="bg-white">
                     <tr>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">
-                        <input name="submit" id="submit" style="background:red;padding:5px 10px;color:#fff;border-radius:2px;" type="submit" value="Delete">
+                        <input id="select_all" style="background:red;padding:5px 10px;color:#fff;border-radius:2px;" type="checkbox">
                       </th>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Photo</th>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Name</th>
@@ -99,7 +88,7 @@
                     ?>
                       <tr class="hover:bg-gray-100">
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5">
-                          <input name="check_list[]" type="checkbox" value="<?php echo $data['id']?>">
+                          <input name="check_list[]" class="checkbox" type="checkbox" value="<?php echo $data['id']?>">
                         </td>
                         <td><img style="margin:0 auto;width:100;height:50px;object-fit:cover" src="upload/<?php echo $data['file']?>"></td>
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['name']?></td>
@@ -226,7 +215,32 @@
 </div>
 </div>
 </main>
-<!-- All Popup -->
+
+
+
+<script>
+  $(document).ready(function(){
+      $('#select_all').on('click',function(){
+          if(this.checked){
+              $('.checkbox').each(function(){
+                  this.checked = true;
+              });
+          }else{
+              $('.checkbox').each(function(){
+                  this.checked = false;
+              });
+          }
+      });
+      
+      $('.checkbox').on('click',function(){
+          if($('.checkbox:checked').length == $('.checkbox').length){
+              $('#select_all').prop('checked',true);
+          }else{
+              $('#select_all').prop('checked',false);
+          }
+      });
+  });
+</script>
 <script src="js/app.js"></script>
 
 

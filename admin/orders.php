@@ -1,17 +1,8 @@
 <?php include("common/header-sidebar.php");?>
 <?php
-
-
-
-$all_item = 500;
-$published_item = 300;
-$pending_item = 200;
-
-
-
-
-
-
+$all_item = mysqli_num_rows(_getAll("cart"));
+$published_item = mysqli_num_rows(_get("cart","status=1 AND type='product'"));
+$pending_item = mysqli_num_rows(_get("cart","status=1 AND type='service'"));
 ?>
 <div class="x_container space-y-10 py-10">
     <div class="flex flex-col rounded-lg shadow-md border border-[] shadow-gray-200 bg-white">
@@ -49,8 +40,8 @@ $pending_item = 200;
                     <!-- Table -->
                     <div class="top_link">
                       <a href="orders.php">All (<?php echo $all_item?>)</a> |
-                      <a href="orders.php?status=product">Product (<?php echo $all_item?>)</a> |
-                      <a href="orders.php?status=service">Services (<?php echo $published_item?>)</a> |
+                      <a href="orders.php?status=product">Product (<?php echo $published_item?>)</a> |
+                      <a href="orders.php?status=service">Services (<?php echo $pending_item?>)</a> |
                       <input type="submit" name="check" value="Delete">
                     </div>
                     <table class="min-w-full divide-y divide-gray-200 table-fixed">
