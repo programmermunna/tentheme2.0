@@ -1,16 +1,9 @@
 <?php include("common/header-sidebar.php");?>
 <?php
 
-
-
 $all_item = 500;
 $published_item = 300;
 $pending_item = 200;
-
-
-
-
-
 
 ?>
 <div class="x_container space-y-10 py-10">
@@ -21,23 +14,28 @@ $pending_item = 200;
                 <div class="overflow-auto bg-white">
                   <div style="display:flex;justify-content:space-between">
                     <div style="display:flex">
-                      <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="category.php">Refresh <i  class="fa-solid fa-rotate-right"></i></a>
+                      <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="product-category.php">Refresh <i  class="fa-solid fa-rotate-right"></i></a>
                     </div>
 
                     <div>
                       <?php 
                       if(isset($_POST['submit'])){
                         $category = $_POST['category'];
-                        $insert = _insert("category","category","'$category'");
-                        if($insert){
-                          $msg = "Successfully Insert Category";
-                          header("location:category.php?msg=$msg");
+                        if(!empty($category)){
+                          $insert = _insert("category","category,type,time","'$category','Product',$time");
+                          if($insert){
+                            $msg = "Successfully Insert Category";
+                            header("location:product-category.php?msg=$msg");
+                          }
+                        }else{
+                          $err = "Please Write Category Name";
+                          header("location:product-category.php?err=$err");
                         }
                       }
                       ?>
                       <form action="" method="POST">
                         <div style="text-align: right;margin: 5px;padding-top: 10px;">
-                            <input name="category" type="text" id="srcvalue" placeholder="Add Category" style="padding: 8px;border: 2px solid #ddd;border-radius:5px;">
+                            <input required name="category" type="text" id="srcvalue" placeholder="Add Category" style="padding: 8px;border: 2px solid #ddd;border-radius:5px;">
                             <button type="submit" name="submit" style="padding: 9px 15px;margin-right: 12px;background: #0e33f78a;color:#fff;box-sizing: border-box;border-radius: 2px;">Add new category</button>
                         </div>
                     </form>
@@ -55,14 +53,14 @@ $pending_item = 200;
                         $delete = _delete("category","id=$check_list[$i]");
                       }
                       $msg = "Delete Successfully";
-                      header("location:category.php?msg=$msg");
+                      header("location:product-category.php?msg=$msg");
                     }
                   }
                   ?>
                   <form action="" method="POST">
                     <!-- Table -->
                     <div class="top_link">
-                      <a href="category.php">All (<?php echo $all_item?>)</a> |
+                      <a href="product-category.php">All (<?php echo $all_item?>)</a> |
                       <input type="submit" name="check" value="Delete">
                     </div>
                     <table class="min-w-full divide-y divide-gray-200 table-fixed">
@@ -78,15 +76,7 @@ $pending_item = 200;
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
-                    <?php 
-                    if(isset($_GET['sort'])){
-                      if($_GET['sort']== 'ASC'){
-                        $category =_query("SELECT * FROM category ORDER BY category ASC");
-                      }else{
-                        $category =_query("SELECT * FROM category ORDER BY category DESC");
-                      }
-                    }else{
-                    
+                    <?php                    
                     $pagination = "ON";
                     if (isset($_GET['page_no']) && $_GET['page_no']!="") {
                     $page_no = $_GET['page_no'];} else {$page_no = 1;}
@@ -96,12 +86,11 @@ $pending_item = 200;
                     $next_page = $page_no + 1;
                     $adjacents = "2";
                     
-                    $category =_query("SELECT * FROM category ORDER BY id DESC LIMIT $offset, $total_records_per_page");
-                    $total_records = mysqli_num_rows(_getAll("category")); 
+                    $category =_query("SELECT * FROM category WHERE type='Product' ORDER BY id DESC LIMIT $offset, $total_records_per_page");
+                    $total_records = mysqli_num_rows(_get("category","type='Product'")); 
 
                     $total_no_of_pages = ceil($total_records / $total_records_per_page);
                     $second_last = $total_no_of_pages - 1;
-                    }
                     $i=0;
                     while($data = mysqli_fetch_assoc($category)){ $i++
                     ?>
@@ -112,7 +101,7 @@ $pending_item = 200;
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $i;?></td>
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['category']?></td>
                         <td class="text-center p-4 space-x-2 whitespace-nowrap lg:p-5">
-                          <a href="delete.php?src=category&&table=category&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Delete</a>
+                          <a href="delete.php?src=product-category&&table=category&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Delete</a>
                         </td>
                       </tr>
                       <?php }?>

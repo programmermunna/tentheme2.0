@@ -84,19 +84,6 @@
               <span>Dashboard</span>
             </a>
           </li>
-          <!-- <li>
-            <a  href="./category.php">
-              <i class="fa-brands fa-squarespace"></i>
-              <span>Category</span>
-            </a>
-          </li> -->
-          <!-- <li>
-            <a  href="./users.php">
-              <i class="fa-solid fa-users"></i>
-              <span>Users</span>
-              <?php if($notify_person>0){ ?><span style="background:#ff3a10;color:#fff;padding:5px;border-radius:50%">0<?php echo $notify_person?></span><?php }?>
-            </a>
-          </li> -->
         </ul>
       </div>
       <hr class="my-0">  
@@ -257,7 +244,7 @@
             </a>
           </li>
           <li>
-            <a href="./category.php">
+            <a href="./product-category.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
               <span>Categories</span>
             </a>
@@ -286,7 +273,7 @@
             </a>
           </li>
           <li>
-            <a href="./category.php">
+            <a href="./service-category.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
               <span>Categories</span>
             </a>
