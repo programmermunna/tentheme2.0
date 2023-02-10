@@ -1,4 +1,3 @@
-
 .chat_area {
     height: 500px;
     box-shadow: 0px 0px 2px gray;
@@ -13,29 +12,46 @@
     display: flex;
     justify-content: space-between;
 }
+
 .person>.img {
     width: 10%;
 }
+
 .person>.img>img {
     width: 50px;
     border-radius: 50%;
     margin: 0 auto;
 }
+
 .person>.img p {
     text-align: center;
     margin-top: 10px;
 }
+
 .person>.message {
     width: 88%;
 }
-.person>.message> p {
+
+.person>.message>p {
     margin-top: 10px;
     opacity: .5;
 }
-.user_chat{
+
+.user_chat {
     background: #48474715;
 }
 
-.top_link a{
-    padding-left: 20px;
+.top_link {
+    padding-left: 10px;
+}
+
+.top_link input[type=submit] {
+    color: red;
+    border: 3px solid red;
+    padding: 2px;
+    opacity: .5;
+}
+
+.top_link input[type=submit]:hover {
+    opacity: 1;
 }

@@ -54,13 +54,13 @@ if($notify_check>0){
                             <button type="submit" style="padding: 9px 15px;margin-right: 12px;background: #0e33f78a;color:#fff;box-sizing: border-box;border-radius: 2px;">Search</button>
                         </div>
                     </form>
-                    </div>
                   </div>
-                    
+                </div>
+                
 
 
-                    <!-- Table -->
-                    <?php 
+                <!-- Table -->
+                <?php 
                   if(isset($_POST['check'])){
                     if(isset($_POST['check_list'])){
                       $check_list = $_POST['check_list'];
@@ -73,12 +73,15 @@ if($notify_check>0){
                   }
                   ?>
                   <form action="" method="POST">
+                    <div class="top_link">
+                      <input type="submit" name="check" value="Delete">
+                    </div>
                     <!-- Table -->
                     <table class="min-w-full divide-y divide-gray-200 table-fixed">
                   <thead class="bg-white">
                     <tr>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">
-                        <input name="check" style="background:red;padding:5px 10px;color:#fff;border-radius:2px;" type="submit" value="Delete">
+                        <input id="select_all" style="background:red;padding:5px 10px;color:#fff;border-radius:2px;" type="checkbox">
                       </th>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Image</th>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Name</th>
@@ -126,7 +129,7 @@ if($notify_check>0){
                     ?>
                       <tr class="hover:bg-gray-100">
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5">
-                          <input name="check_list[]" type="checkbox" value="<?php echo $data['id']?>">
+                          <input name="check_list[]" class="checkbox" type="checkbox" value="<?php echo $data['id']?>">
                         </td>
                         <td><img style="margin:0 auto;width:100;height:50px;object-fit:cover" src="upload/<?php echo $person_info['file_name']?>"></td>
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $person_info['name']?></td>
@@ -296,6 +299,33 @@ if($notify_check>0){
       </div>
     </div>
   </div>
+
+
+
+
+<script>
+  $(document).ready(function(){
+      $('#select_all').on('click',function(){
+          if(this.checked){
+              $('.checkbox').each(function(){
+                  this.checked = true;
+              });
+          }else{
+              $('.checkbox').each(function(){
+                  this.checked = false;
+              });
+          }
+      });
+      
+      $('.checkbox').on('click',function(){
+          if($('.checkbox:checked').length == $('.checkbox').length){
+              $('#select_all').prop('checked',true);
+          }else{
+              $('#select_all').prop('checked',false);
+          }
+      });
+  });
+</script>
 
 <script src="js/app.js"></script>
 
