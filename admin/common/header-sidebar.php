@@ -275,15 +275,9 @@
             </a>
           </li>
           <li>
-            <a href="./pending-products.php">
+            <a href="./products.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>Pending Products</span>
-            </a>
-          </li>
-          <li>
-            <a href="./published-products.php">
-              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>Published Products</span>
+              <span>All Products</span>
             </a>
           </li>
         </ul>
@@ -304,15 +298,9 @@
             </a>
           </li>
           <li>
-            <a href="./pending-service.php">
+            <a href="./services.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>Pending Services</span>
-            </a>
-          </li>
-          <li>
-            <a href="./published-service.php">
-              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>Published Services</span>
+              <span>All Services</span>
             </a>
           </li>
         </ul>
@@ -369,20 +357,14 @@
             <!-- Sidebar Item -> products -->
             <div class="sidebar_item overflow-hidden">
         <button class="ds_title" data-ref="order"><span class="text-xs transition-all text-pink-600"><i
-              class="fa-solid fa-briefcase"></i></span><span class="tracking-wider block">Order & Service</span><span
+              class="fa-solid fa-briefcase"></i></span><span class="tracking-wider block">Orders</span><span
             class="text-xs opacity-50 transition-all"><i class="fa-solid fa-chevron-up"></i></span>
         </button>
         <ul class="ds_ul transition-all" data-ref="order">
           <li>
-            <a href="./purchased-orders.php">
+            <a href="./orders.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>Purchased Orders</span>
-            </a>
-          </li>
-          <li>
-            <a href="./purchased-services.php">
-              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>Purchased Services</span>
+              <span>All Orders</span>
             </a>
           </li>
         </ul>
@@ -400,22 +382,10 @@
         </button>
         <ul class="ds_ul transition-all" data-ref="Ticket">
           <li>
-            <a href="./pending-tickets.php">
+            <a href="./tickets.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>Pending Tickets</span>
+              <span>All Tickets</span>
               <?php if($notify_tickets>0){ ?><span style="background:#ff3a10;color:#fff;padding:5px;border-radius:50%">0<?php echo $notify_tickets?></span><?php }?>
-            </a>
-          </li>
-          <li>
-            <a href="./open-tickets.php">
-              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>Open Tickets</span>
-            </a>
-          </li>
-          <li>
-            <a href="./solved-tickets.php">
-              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>Solved Tickets</span>
             </a>
           </li>
         </ul>

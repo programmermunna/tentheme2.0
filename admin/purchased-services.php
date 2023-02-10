@@ -1,4 +1,18 @@
 <?php include("common/header-sidebar.php");?>
+<?php
+
+
+
+$all_item = 500;
+$published_item = 300;
+$pending_item = 200;
+
+
+
+
+
+
+?>
 <div class="x_container space-y-10 py-10">
     <div class="flex flex-col rounded-lg shadow-md border border-[] shadow-gray-200 bg-white">
         <div class="overflow-x-auto rounded-lg">
@@ -56,6 +70,9 @@
                   <form action="" method="POST">
                     <!-- Table -->
                     <div class="top_link">
+                      <a href="">All (500)</a> |
+                      <a href="">Published (400)</a> |
+                      <a href="">Pending (100)</a> |
                       <input type="submit" name="check" value="Delete">
                     </div>
                     <table class="min-w-full divide-y divide-gray-200 table-fixed">

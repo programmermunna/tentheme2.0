@@ -1,82 +1,92 @@
 <?php include("common/header-sidebar.php");?>
+<?php
+$notify_check = mysqli_num_rows(_get("tickets","status='Pending' AND notify='New'"));
+if($notify_check>0){
+  $update_notify = _update("tickets","notify='Old'","notify='New'");
+  header("location:tickets.php");
+}
+
+
+
+if(isset($_GET['action'])){
+  $action = $_GET['action'];
+  $ticket_id = $_GET['ticket_id'];
+  if($action == 'solved'){
+    $update = _update("tickets","status='Solved'","ticket_id=$ticket_id");
+    if($ticket_id){
+      $msg = "Successfully Solved Ticket";
+      header("location:tickets.php?msg=$msg");      
+    }
+  }elseif($action == 'delete'){
+    $delete = _delete("tickets","ticket_id=$ticket_id");
+    if($delete){
+      $msg = "Successfully Deleted Ticket";
+      header("location:tickets.php?msg=$msg");      
+    }
+  }else{
+    header("location:tickets.php");
+  }
+}
+
+
+?>
+
+<?php
+
+
+
+$all_item = 500;
+$published_item = 300;
+$pending_item = 200;
+
+
+
+
+
+
+?>
 <div class="x_container space-y-10 py-10">
-    <div class="flex flex-col rounded-lg shadow-md border border-[] shadow-gray-200 bg-white">
+    <div class="flex flex-col rounded-lg shadow-md border border-[
+        ] shadow-gray-200 bg-white">
         <div class="overflow-x-auto rounded-lg">
             <div class="inline-block min-w-full align-middle">
                 <div class="overflow-auto bg-white">
                   <div style="display:flex;justify-content:space-between">
                     <div style="display:flex">
-                      <select style="margin: 15px;width:300px;" name="" class="input" id="category">
-                          <?php if(isset($_GET['src'])){?>
-                          <option style="display:none" selected value="<?php echo $_GET['src']?>"><?php echo $_GET['src']?></option>
-                          <?php }else{?>
-                          <option style="display:none" selected>Category</option>
-                          <?php }?>
-                          <option value="Javascript">Javascript</option>
-                          <option value="PHP">PHP</option>
-                      </select>
-
-                      <select style="margin: 15px;" name="" class="input" id="sort">
-                          <?php if(isset($_GET['sort'])){?>
-                          <option style="display:none" selected value="<?php echo $_GET['sort']?>"><?php echo $_GET['sort']?></option>
-                          <?php }else{?>
-                          <option style="display:none" selected>Select</option>
-                          <?php }?>
-                          <option value="ASC">Low To High</option>
-                          <option value="DESC">High To Low</option>
-                      </select>
-
-                      <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="pending-service.php"><i class="fa-solid fa-rotate-right"></i> Refresh</a>
-
-                      <script type="text/javascript">
-                          $(function () {
-                              $('#sort').on('change', function () {
-                                  var val = $(this).find("option:selected").val();
-                                  var url = self.location.href.split('?')[0] + '?sort=' +val;
-                                  if (url != "") {
-                                      window.location.href = url;
-                                  }
-                              });
-                          });
-                          $(function () {
-                              $('#category').on('change', function () {
-                                  var val = $(this).find("option:selected").val();
-                                  var url = self.location.href.split('?')[0] + '?src=' +val;
-                                  if (url != "") {
-                                      window.location.href = url;
-                                  }
-                              });
-                          });
-                      </script>
+                      <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="tickets.php">Refresh <i  class="fa-solid fa-rotate-right"></i></a>
                     </div>
 
                     <div>
-                      <form action="" method="GET">
+                    <form action="" method="GET">
                         <div style="text-align: right;margin: 5px;padding-top: 10px;">
                             <input name="src" type="search" id="srcvalue" placeholder="Search Here..." style="padding: 8px;border: 2px solid #ddd;border-radius:5px;">
                             <button type="submit" name="search" style="padding: 9px 15px;margin-right: 12px;background: #0e33f78a;color:#fff;box-sizing: border-box;border-radius: 2px;">Search</button>
                         </div>
                     </form>
                     </div>
-                  </div>
+                  </div>                    
 
 
-                
-                  <?php 
-                  if(isset($_POST['submit'])){
+                    <!-- Table -->
+                    <?php 
+                  if(isset($_POST['check'])){
                     if(isset($_POST['check_list'])){
                       $check_list = $_POST['check_list'];
                       for($i=0;$i<count($check_list);$i++){
-                        $delete = _delete("service","id=$check_list[$i]");
+                        $delete = _delete("tickets","id=$check_list[$i]");
                       }
                       $msg = "Delete Successfully";
-                      header("location:pending-service.php?msg=$msg");
+                      header("location:tickets.php?msg=$msg");
                     }
                   }
                   ?>
                   <form action="" method="POST">
                     <!-- Table -->
                     <div class="top_link">
+                      <a href="tickets.php">All (<?php echo $all_item?>)</a> |
+                      <a href="tickets.php?status=Pending">Pending (<?php echo $published_item?>)</a> |
+                      <a href="tickets.php?status=Open">Open (<?php echo $pending_item?>)</a> |
+                      <a href="tickets.php?status=Solved">Solved (<?php echo $pending_item?>)</a> |
                       <input type="submit" name="check" value="Delete">
                     </div>
                     <table class="min-w-full divide-y divide-gray-200 table-fixed">
@@ -85,32 +95,35 @@
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">
                       <input id="select_all" style="background:red;padding:5px 10px;color:#fff;border-radius:2px;" type="checkbox">
                       </th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Tumbnail</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Title</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Regular Price</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Sell Price</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Category</th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Ticket Id</th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Image</th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Name</th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Phone</th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Subject</th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Service</th>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Date</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">author</th>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Status</th>
                       <th scope="col" class="text-center p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5"> Actions</th>
 
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
-                    <?php 
+                    <?php
                     if(isset($_GET['src'])){
-                      $src = trim($_GET['src']);
-                      $service = _get("service","status='Pending' AND (title='$src' OR regular_price='$src' OR sell_price='$src' OR category='$src')");                       
-
-                    }elseif(isset($_GET['sort'])){
-                      if($_GET['sort']== 'ASC'){
-                        $service =_get("service","status='Pending' ORDER BY sell_price ASC");
-                      }else{
-                        $service =_get("service","status='Pending' ORDER BY sell_price DESC");
-                      }
-                    }else{
-                    
+                      $src = trim($_GET['src']); 
+                      $tickets = _query("SELECT * FROM tickets INNER JOIN person ON tickets.pid=person.id INNER JOIN service ON tickets.service_id = service.id
+                       WHERE tickets.status='Pending' AND subject !='' AND (
+                          person.name='$src'  
+                       OR person.phone='$src'
+                       OR tickets.ticket_id='$src'
+                       OR tickets.subject='$src'
+                       OR service.title='$src'                       
+                       )
+                       ");
+                    }elseif(isset($_GET['status'])){
+                        $status = $_GET['status'];
+                        $tickets =_get("tickets","status='$status'");
+                    }else{                    
                     $pagination = "ON";
                     if (isset($_GET['page_no']) && $_GET['page_no']!="") {
                     $page_no = $_GET['page_no'];} else {$page_no = 1;}
@@ -118,35 +131,46 @@
                     $offset = ($page_no-1) * $total_records_per_page;
                     $previous_page = $page_no - 1;
                     $next_page = $page_no + 1;
-                    $adjacents = "2"; 
+                    $adjacents = "2";
 
-                    $service =_get("service","status='Pending' ORDER BY id DESC LIMIT $offset, $total_records_per_page");
-                    $total_records = mysqli_num_rows(_get("service","status='Pending'")); 
+                    $tickets =_query("SELECT * FROM tickets WHERE subject !='' ORDER BY id DESC LIMIT $offset, $total_records_per_page");
+                    $total_records = mysqli_num_rows(_get("tickets","subject !=''"));
 
                     $total_no_of_pages = ceil($total_records / $total_records_per_page);
                     $second_last = $total_no_of_pages - 1;
-                    }
-
-                    while($data = mysqli_fetch_assoc($service)){
+                      }
+                    $i=0;
+                    while($data = mysqli_fetch_assoc($tickets)){ $i++;
                     $person_id = $data['pid'];
                     $person_info = _fetch("person","id=$person_id");
+
+                    $service_id = $data['service_id'];
+                    $service = _fetch("service","id=$service_id");
                     ?>
                       <tr class="hover:bg-gray-100">
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5">
                           <input name="check_list[]" class="checkbox" type="checkbox" value="<?php echo $data['id']?>">
                         </td>
-                        <td><img style="margin:0 auto;width:100;height:50px;object-fit:cover" src="upload/<?php echo $data['file_name1']?>"></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['title']?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['regular_price']?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['sell_price']?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['category']?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo date("d-M-y",$data['time']);?></td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['ticket_id']?></td>
+                        <td><img style="margin:0 auto;width:100;height:50px;object-fit:cover" src="upload/<?php echo $person_info['file_name']?>"></td>
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $person_info['name']?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['status']?></td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $person_info['phone']?></td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php sort_str($data['subject'])?></td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5">
+                          <a target="_blank" href="../service.php?service_id=<?php echo $service['id']?>"><?php sort_str($service['title'])?></a>
+                        </td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php $time = $data['time'];echo date("d/M/y",$time)?></td>
+                        <?php if($data['status']=='Pending'){?>
+                        <td class="p-4 text-sm font-normal text-red-500 whitespace-nowrap lg:p-5"><?php echo $data['status']?></td>
+                        <?php }elseif($data['status']=='Open'){?>
+                          <td class="p-4 text-sm font-normal text-Black-500 whitespace-nowrap lg:p-5"><?php echo $data['status']?></td>
+                          <?php }else{?>
+                            <td class="p-4 text-sm font-normal text-green-500 whitespace-nowrap lg:p-5"><?php echo $data['status']?></td>
+                        <?php }?>
                         <td class="text-center p-4 space-x-2 whitespace-nowrap lg:p-5">
-                          <a href="edit.php?src=pending-service&&table=service&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Edit</a>
-                          <a href="delete.php?src=pending-service&&table=service&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Delete</a>
-                          <a href="delete.php?src=pending-service&&table=service&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">View</a> 
+                          <a href="view-ticket.php?ticket_id=<?php echo $data['ticket_id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">View</a>
+                          <a href="tickets.php?action=delete&&ticket_id=<?php echo $data['ticket_id']?>" class="popup_show btn bg-red-500 w-fit text-white">Delete</a>                          
+                          <a href="tickets.php?action=solved&&ticket_id=<?php echo $data['ticket_id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Solved</a>
                         </td>
                       </tr>
                       <?php }?>
@@ -260,8 +284,49 @@
 </main>
 
 <!-- All Popup -->
+  <!-- Add New Pack Popup -->
+  <div data-target="add_bank"
+    class="popup_wrapper overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 justify-center items-center md:inset-0 sm:h-full flex"
+    id="delete-product-modal" style="z-index: 111; display: none;">
+    <div data-target="add_bank" class="popup_remove w-full h-screen bg-black bg-opacity-50 z-40 fixed inset-0 m-auto">
+    </div>
+    <div class="relative p-4 w-full max-w-md h-full md:h-auto z-50">
+      <div class="relative bg-white rounded-2xl shadow-lg p-6 pt-4">
+        <div class="flex justify-end">
+          <button type="button" data-target="add_bank"
+            class="popup_remove text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-2xl text-sm w-8 h-8 flex items-center justify-center ml-auto"
+            data-modal-toggle="delete-product-modal"> <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
 
-<script>
+        <form class="flex flex-col gap-y-6">
+          <h2 class="text-lg font-semibold text-cyan-900">New Bank</h2>
+          <div class="flex flex-col gap-y-1">
+            <label for="Bank Name">Bank Name</label>
+            <input type="text" id="Bank Name" placeholder="Bank Name" class="input" required>
+          </div>
+
+          <div class="flex flex-col gap-y-1">
+            <label for="Currency Symble">Currency Symble</label>
+            <input type="text" id="Currency Symble" placeholder="Currency Symble" class="input" required>
+          </div>
+
+          <div class="flex flex-col gap-y-1">
+            <label for="Bank Info">Bank Info</label>
+            <input type="text" id="Bank Info" placeholder="Bank Info" class="input" required>
+          </div>
+
+          <div class="flex justify-end">
+            <button class="button">Submit</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+
+  <script>
   $(document).ready(function(){
       $('#select_all').on('click',function(){
           if(this.checked){
@@ -285,8 +350,6 @@
   });
 </script>
 <script src="js/app.js"></script>
-
-
 
 </body>
 

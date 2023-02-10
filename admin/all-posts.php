@@ -1,35 +1,28 @@
 <?php include("common/header-sidebar.php");?>
+<?php
+
+
+
+$all_item = 500;
+$published_item = 300;
+$pending_item = 200;
+
+
+
+
+
+
+?>
 <div class="x_container space-y-10 py-10">
     <div class="flex flex-col rounded-lg shadow-md border border-[] shadow-gray-200 bg-white">
         <div class="overflow-x-auto rounded-lg">
             <div class="inline-block min-w-full align-middle">
                 <div class="overflow-auto bg-white">
                   <div style="display:flex;justify-content:space-between">
-                    <div style="display:flex">                    
-
-                      <select style="margin: 15px;" name="" class="input" id="status">
-                          <?php if(isset($_GET['status'])){?>
-                          <option style="display:none" selected value="<?php echo $_GET['status']?>"><?php echo $_GET['status']?></option>
-                          <?php }else{?>
-                          <option style="display:none" selected>Select</option>
-                          <?php }?>
-                          <option value="Publish">Publish</option>
-                          <option value="Draft">Draft</option>
-                      </select>
+                    <div style="display:flex">
 
                       <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="all-posts.php"> <i class="fa-solid fa-rotate-right"></i> Refresh</a>
 
-                      <script type="text/javascript">
-                          $(function () {
-                              $('#status').on('change', function () {
-                                  var val = $(this).find("option:selected").val();
-                                  var url = self.location.href.split('?')[0] + '?status=' +val;
-                                  if (url != "") {
-                                      window.location.href = url;
-                                  }
-                              });
-                          });
-                      </script>
                     </div>
 
                     <div>
@@ -41,8 +34,6 @@
                     </form>
                     </div>
                   </div>
-
-
                 
                   <?php 
                   if(isset($_POST['submit'])){
@@ -59,6 +50,9 @@
                   <form action="" method="POST">
                     <!-- Table -->
                     <div class="top_link">
+                      <a href="all-posts.php">All (<?php echo $all_item?>)</a> |
+                      <a href="all-posts.php?status=Publish">Published (<?php echo $published_item?>)</a> |
+                      <a href="all-posts.php?status=Draft">Draft (<?php echo $pending_item?>)</a> |
                       <input type="submit" name="check" value="Delete">
                     </div>
                     <table class="min-w-full divide-y divide-gray-200 table-fixed">

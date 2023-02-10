@@ -47,11 +47,20 @@
 
 .top_link input[type=submit] {
     color: red;
-    border: 3px solid red;
     padding: 2px;
     opacity: .5;
 }
 
 .top_link input[type=submit]:hover {
+    opacity: 1;
+}
+
+.top_link>a {
+    color: red;
+    padding: 2px;
+    opacity: .5;
+}
+
+.top_link>a:hover {
     opacity: 1;
 }

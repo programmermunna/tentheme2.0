@@ -6,7 +6,20 @@
     header("location:users.php");
   }
 ?>
+<?php
 
+
+
+$all_item = 500;
+$published_item = 300;
+$pending_item = 200;
+
+
+
+
+
+
+?>
 <div class="x_container space-y-10 py-10">
     <div class="flex flex-col rounded-lg shadow-md border border-[
         ] shadow-gray-200 bg-white">
@@ -15,50 +28,7 @@
                 <div class="overflow-auto bg-white">
                   <div style="display:flex;justify-content:space-between">
                     <div style="display:flex">
-
-                      <select style="margin: 15px;width:300px;" name="sort" class="input" id="sort">
-                          <?php if(isset($_GET['sort'])){?>
-                          <option style="display:none" selected value="<?php echo $_GET['sort']?>"><?php echo $_GET['sort']?></option>
-                          <?php }else{?>
-                          <option style="display:none" selected>Select</option>
-                          <?php }?>
-                          <option value="ASC">ASC</option>
-                          <option value="DESC">DESC</option>
-                      </select>
-
-                      <select style="margin: 15px;width:300px;" name="role" class="input" id="role">
-                          <?php if(isset($_GET['role'])){?>
-                          <option style="display:none" selected value="<?php echo $_GET['role']?>"><?php echo $_GET['role']?></option>
-                          <?php }else{?>
-                          <option style="display:none" selected>Select</option>
-                          <?php }?>
-                          <option value="User">User</option>
-                          <option value="Moderator">Moderator</option>
-                      </select>
-
                       <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="users.php">Refresh <i  class="fa-solid fa-rotate-right"></i></a>
-
-                      <script type="text/javascript">
-                          $(function () {
-                              $('#sort').on('change', function () {
-                                  var val = $(this).find("option:selected").val();
-                                  var url = self.location.href.split('?')[0] + '?sort=' +val;
-                                  if (url != "") {
-                                      window.location.href = url;
-                                  }
-                              });
-                          });
-
-                          $(function () {
-                              $('#role').on('change', function () {
-                                  var val = $(this).find("option:selected").val();
-                                  var url = self.location.href.split('?')[0] + '?role=' +val;
-                                  if (url != "") {
-                                      window.location.href = url;
-                                  }
-                              });
-                          });
-                      </script>
                     </div>
 
                     <div>
@@ -88,6 +58,9 @@
                   ?>
                   <form action="" method="POST">
                     <div class="top_link">
+                      <a href="users.php">All (<?php echo $all_item?>)</a> |
+                      <a href="users.php?role=Moderator">Moderators (<?php echo $published_item?>)</a> |
+                      <a href="users.php?role=User">Users (<?php echo $pending_item?>)</a> |
                       <input type="submit" name="check" value="Delete">
                     </div>
                     <!-- Table -->
@@ -116,14 +89,7 @@
                     }elseif(isset($_GET['role'])){
                       $src = trim($_GET['role']);
                       $person = _get("person","role !='Admin' AND role='$src'");                    
-                    }elseif(isset($_GET['sort'])){
-                      if($_GET['sort']== 'ASC'){
-                        $person =_query("SELECT * FROM person WHERE role !='Admin'  ORDER BY name ASC");
-                      }else{
-                        $person =_query("SELECT * FROM person WHERE role !='Admin'  ORDER BY name DESC");
-                      }
-                    }else{
-                    
+                    }else{                    
                     $pagination = "ON";
                     if (isset($_GET['page_no']) && $_GET['page_no']!="") {
                     $page_no = $_GET['page_no'];} else {$page_no = 1;}

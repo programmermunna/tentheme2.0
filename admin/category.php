@@ -1,5 +1,18 @@
 <?php include("common/header-sidebar.php");?>
+<?php
 
+
+
+$all_item = 500;
+$published_item = 300;
+$pending_item = 200;
+
+
+
+
+
+
+?>
 <div class="x_container space-y-10 py-10">
     <div class="flex flex-col rounded-lg shadow-md border border-[
         ] shadow-gray-200 bg-white">
@@ -8,30 +21,7 @@
                 <div class="overflow-auto bg-white">
                   <div style="display:flex;justify-content:space-between">
                     <div style="display:flex">
-
-                      <select style="margin: 15px;width:300px;" name="sort" class="input" id="sort">
-                          <?php if(isset($_GET['sort'])){?>
-                          <option style="display:none" selected value="<?php echo $_GET['sort']?>"><?php echo $_GET['sort']?></option>
-                          <?php }else{?>
-                          <option style="display:none" selected>Select</option>
-                          <?php }?>
-                          <option value="ASC">ASC</option>
-                          <option value="DESC">DESC</option>
-                      </select>
-
                       <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="category.php">Refresh <i  class="fa-solid fa-rotate-right"></i></a>
-
-                      <script type="text/javascript">
-                          $(function () {
-                              $('#sort').on('change', function () {
-                                  var val = $(this).find("option:selected").val();
-                                  var url = self.location.href.split('?')[0] + '?sort=' +val;
-                                  if (url != "") {
-                                      window.location.href = url;
-                                  }
-                              });
-                          });
-                      </script>
                     </div>
 
                     <div>
@@ -72,6 +62,7 @@
                   <form action="" method="POST">
                     <!-- Table -->
                     <div class="top_link">
+                      <a href="category.php">All (<?php echo $all_item?>)</a> |
                       <input type="submit" name="check" value="Delete">
                     </div>
                     <table class="min-w-full divide-y divide-gray-200 table-fixed">

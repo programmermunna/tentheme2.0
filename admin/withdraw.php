@@ -6,6 +6,20 @@ if($notify_check>0){
   header("location:pending-withdraw.php");
 }
 ?>
+<?php
+
+
+
+$all_item = 500;
+$published_item = 300;
+$pending_item = 200;
+
+
+
+
+
+
+?>
 <div class="x_container space-y-10 py-10">
     <div class="flex flex-col rounded-lg shadow-md border border-[
         ] shadow-gray-200 bg-white">
@@ -14,31 +28,6 @@ if($notify_check>0){
                 <div class="overflow-auto bg-white">
                 <div style="display:flex;justify-content:space-between">
                     <div style="display:flex">
-
-                    <select style="margin: 15px;width:300px;" name="sort" class="input" id="sort">
-                          <?php if(isset($_GET['sort'])){?>
-                          <option style="display:none" selected value="<?php echo $_GET['sort']?>"><?php echo $_GET['sort']?></option>
-                          <?php }else{?>
-                          <option style="display:none" selected>Status</option>
-                          <?php }?>
-                          <option value="Pending">Pending</option>
-                          <option value="Published">Published</option>
-                      </select>
-
-                      <script type="text/javascript">
-                          $(function () {
-                              $('#sort').on('change', function () {
-                                  var val = $(this).find("option:selected").val();
-                                  var url = self.location.href.split('?')[0] + '?status=' +val;
-                                  if (url != "") {
-                                      window.location.href = url;
-                                  }
-                              });
-                          });
-                      </script>
-
-
-
                       <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="withdraw.php">Refresh <i  class="fa-solid fa-rotate-right"></i></a>
                     </div>
 
@@ -73,6 +62,9 @@ if($notify_check>0){
                   ?>
                   <form action="" method="POST">
                     <div class="top_link">
+                      <a href="withdraw.php">All (<?php echo $all_item?>)</a> |
+                      <a href="withdraw.php?status=Publish">Published (<?php echo $published_item?>)</a> |
+                      <a href="withdraw.php?status=Pending">Pending (<?php echo $pending_item?>)</a> |
                       <input type="submit" name="check" value="Delete">
                     </div>
                     <!-- Table -->
