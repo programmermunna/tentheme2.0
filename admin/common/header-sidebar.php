@@ -156,8 +156,7 @@
               class="fa-solid fa-briefcase"></i></span><span class="tracking-wider block">Users</span><span
             class="text-xs opacity-50 transition-all"><i class="fa-solid fa-chevron-up"></i></span>
         </button>
-        <ul class="ds_ul transition-all" data-ref="user">
-         
+        <ul class="ds_ul transition-all" data-ref="user">         
           <li>
             <a href="./users.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
@@ -222,7 +221,7 @@
             </a>
           </li>
           <li>
-            <a href="./add-posts.php">
+            <a href="./add-post.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
               <span>Add Post</span>
             </a>
@@ -231,29 +230,6 @@
             <a href="./post-category.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
               <span>Categories</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <hr class="my-0">            
-
-      <!-- Sidebar Item -> products -->
-      <div class="sidebar_item overflow-hidden">
-        <button class="ds_title" data-ref="category"><span class="text-xs transition-all text-pink-600"><i
-              class="fa-solid fa-briefcase"></i></span><span class="tracking-wider block">Categories</span><span
-            class="text-xs opacity-50 transition-all"><i class="fa-solid fa-chevron-up"></i></span>
-        </button>
-        <ul class="ds_ul transition-all" data-ref="category">
-          <li>
-            <a href="./category.php">
-              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>All category</span>
-            </a>
-          </li>
-          <li>
-            <a href="./category.php">
-              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>Add category</span>
             </a>
           </li>
         </ul>
@@ -280,6 +256,12 @@
               <span>All Products</span>
             </a>
           </li>
+          <li>
+            <a href="./category.php">
+              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
+              <span>Categories</span>
+            </a>
+          </li>
         </ul>
       </div>
       <hr class="my-0">
@@ -290,7 +272,13 @@
               class="fa-solid fa-briefcase"></i></span><span class="tracking-wider block">Services</span><span
             class="text-xs opacity-50 transition-all"><i class="fa-solid fa-chevron-up"></i></span>
         </button>
-        <ul class="ds_ul transition-all" data-ref="service">
+        <ul class="ds_ul transition-all" data-ref="service">          
+          <li>
+            <a href="./services.php">
+              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
+              <span>All Services</span>
+            </a>
+          </li>
           <li>
             <a href="./add-service.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
@@ -298,9 +286,9 @@
             </a>
           </li>
           <li>
-            <a href="./services.php">
+            <a href="./category.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>All Services</span>
+              <span>Categories</span>
             </a>
           </li>
         </ul>
@@ -317,13 +305,13 @@
           <li>
             <a href="./pages.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>All Page</span>
+              <span>All Pages</span>
             </a>
           </li>
           <li>
             <a href="./pages.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>Add New</span>
+              <span>Add Page</span>
             </a>
           </li>
         </ul>
@@ -337,16 +325,16 @@
             class="text-xs opacity-50 transition-all"><i class="fa-solid fa-chevron-up"></i></span>
         </button>
         <ul class="ds_ul transition-all" data-ref="team">
-          <li>
-            <a href="./add-team.php">
-              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>Add Team</span>
-            </a>
-          </li>
-          <li>
+        <li>
             <a href="./all-team.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
               <span>All Team</span>
+            </a>
+          </li>
+          <li>
+            <a href="./add-team.php">
+              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
+              <span>Add Member</span>
             </a>
           </li>
         </ul>
@@ -354,8 +342,8 @@
       <hr class="my-0">
 
       
-            <!-- Sidebar Item -> products -->
-            <div class="sidebar_item overflow-hidden">
+        <!-- Sidebar Item -> products -->
+        <div class="sidebar_item overflow-hidden">
         <button class="ds_title" data-ref="order"><span class="text-xs transition-all text-pink-600"><i
               class="fa-solid fa-briefcase"></i></span><span class="tracking-wider block">Orders</span><span
             class="text-xs opacity-50 transition-all"><i class="fa-solid fa-chevron-up"></i></span>
@@ -364,7 +352,7 @@
           <li>
             <a href="./orders.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>All Orders</span>
+              <span>All Orders</span>              
             </a>
           </li>
         </ul>
