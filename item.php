@@ -2,7 +2,7 @@
 <?php include("common/header.php");?>
 <!-- Header area -->
 <?php 
-          $review = "OFF";
+$review = "OFF";
 
 
 
@@ -278,13 +278,13 @@ if(isset($_GET['product_id'])){
             <!-- comments -->
             <div class="pt-6 space-y-3">
             <?php 
-            $products = _fetch("products","id=$id");
+            $products = _fetch("products","id=$product_id");
             $products['comment'];              
             if($products['comment'] > 0){
             ?>
               <div class="border rounded overflow-hidden">
                     <?php                    
-                    $comment = _get("comment","post_id=$id");
+                    $comment = _get("comment","post_id=$product_id");
                     while ($row = mysqli_fetch_assoc($comment)) {
                         $array[] = $row;
                     }
@@ -348,7 +348,7 @@ if(isset($_GET['product_id'])){
                 if(isset($_POST['send_message'])){
                     $user_id = $_SESSION['user_id'];
                     if($user_id<1){
-                        header("location:login.php?id=$id&&msg=Please login first");
+                        header("location:login.php?id=$product_id&&err=Please login first");
                     }else{
                       if(isset($_GET['comment'])){
                       $parent_id = $_GET['comment'];
@@ -361,11 +361,11 @@ if(isset($_GET['product_id'])){
                     $img = $user_info['file_name'];                  
                     $message = $_POST['message'];
                     $time = time();
-                    $update = _update("products","comment = comment+1","id=$id");
-                    $insert = _insert("comment","post_id,parent_id, name, email, content, img, time" , "'$id','$parent_id', '$name', '$email', '$message', '$img', '$time'"); 
+                    $update = _update("products","comment = comment+1","id=$product_id");
+                    $insert = _insert("comment","post_id,parent_id, name, email, content, img, time" , "'$product_id','$parent_id', '$name', '$email', '$message', '$img', '$time'"); 
                     if($insert){
                         $msg='Message Sent Successfull';
-                        header("location:item.php?product_id=$id&&msg=$msg");
+                        header("location:item.php?product_id=$product_id&&msg=$msg");
                     }else{
                       echo "errro";
                     }
