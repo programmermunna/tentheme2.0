@@ -274,72 +274,24 @@ if(isset($_GET['product_id'])){
               </h3>
             </div>
             <div class="pt-6 space-y-3">
-            <?php 
-            $products = _fetch("products","id=$product_id");
-            $products['comment'];              
-            if($products['comment'] > 0){
-            ?>
               <div class="border rounded overflow-hidden">
-                    <?php                    
-                    $comment = _get("comment","post_id=$product_id");
-                    while ($row = mysqli_fetch_assoc($comment)) {
-                        $array[] = $row;
-                    }
+                   
+              <?php $comments = _get("comment","post_id=$product_id AND type='product' ORDER BY id DESC LIMIT 10");
+                while($comment = mysqli_fetch_assoc($comments)){ ?> 
+                  <div class="p-4 border-b bg-gray-50">
+                    <div class="overflow-hidden flex items-center justify-between">
+                      <a href="#!" class="flex items-center gap-x-3 text-blue-500 font-medium">
+                        <img class="w-10 h-10 object-contain rounded-full"
+                          src="admin/upload/<?php echo $comment['img']?>">
+                        <span><?php echo $comment['name']?></span>
+                      </a>
+                      <small><?php $time=$comment['time']; echo time_elapsed_string($time,true);?></small>
+                    </div>
+                    <p class="mt-3"><?php echo $comment['content']?></p>
+                  </div>
+              <?PHP }?>
 
-                    function buildTree($data, $parent = 0) {
-                        $tree = array();
-                        foreach ($data as $d) {
-                            if ($d['parent_id'] == $parent) {
-                                $children = buildTree($data, $d['id']);
-                                
-                                if (!empty($children)) {
-                                    $d['_children'] = $children;
-                                }
-                                $tree[] = $d;
-                            }
-                        }
-                        return $tree;
-                    } 
-                    $arr = buildTree($array);                    
-
-                    
-                    function printTree($arr, $r = 0, $p = null) {
-                        foreach ($arr as $i => $t) {
-                            $dash = ($t['parent_id'] == 0) ? '' : str_repeat('30+',$r);
-                            $dash = array_sum(explode( '+', $dash));
-                            $img = $t['img'];
-                            $name = $t['name'];
-                            $content = $t['content'];
-                            $comment_id = $t['id'];
-                            $parent_id = $t['parent_id'];
-                            $time = $t['time'];
-                            $post_id = $_GET['product_id'];
-                            ?>
-                              <div class="p-4 border-b bg-gray-50" style="padding-left:<?php if($parent_id != 0){echo $dash;}else{ echo 20;}?>px">
-                                <div class="overflow-hidden flex items-center justify-between">
-                                  <a href="item.php?id=<?php echo $post_id?>&&comment=<?php echo $comment_id?>" class="flex items-center gap-x-3 text-blue-500 font-medium">
-                                    <img class="w-10 h-10 object-contain rounded-full"
-                                      src="admin/upload/<?php echo $img?>">
-                                    <span><?php echo $name?></span>
-                                  </a>
-                                  <small><?php echo time_elapsed_string($time,true);?></small>
-                                </div>
-                                <p class="mt-3"><?php echo $content?></p>
-                              </div>
-                            <?php
-
-                            if (isset($t['_children'])) {
-                                echo "<div>";
-                                printTree($t['_children'], ++$r, $t['parent_id']);
-                                --$r;
-                                echo "</div>";
-                            }
-                        }
-                    } 
-                    printTree($arr);
-                    ?>
               </div>
-              <?php }?>
 
               <?php                 
                 if(isset($_POST['send_message'])){
@@ -357,9 +309,9 @@ if(isset($_GET['product_id'])){
                     $email = $user_info['email'];                  
                     $img = $user_info['file_name'];                  
                     $message = $_POST['message'];
-                    $time = time();
+                    $type = "product";
                     $update = _update("products","comment = comment+1","id=$product_id");
-                    $insert = _insert("comment","post_id,parent_id, name, email, content, img, time" , "'$product_id','$parent_id', '$name', '$email', '$message', '$img', '$time'"); 
+                    $insert = _insert("comment","post_id,parent_id,type, name, email, content, img, time" , "'$product_id','$parent_id','$type', '$name', '$email', '$message', '$img', '$time'"); 
                     if($insert){
                         $msg='Message Sent Successfull';
                         header("location:item.php?product_id=$product_id&&msg=$msg");
@@ -368,7 +320,7 @@ if(isset($_GET['product_id'])){
                     }
                     }}                
                 ?>
-              <div class="border mb-3">
+                <div class="border mb-3">
                     <div class="section-title mb-0">
                         <h4 class="m-0 text-uppercase font-weight-bold">Leave a comment</h4>
                     </div>
@@ -384,6 +336,7 @@ if(isset($_GET['product_id'])){
                         </form>
                     </div>
                 </div>
+
             </div>
           </div>
           <!-- Item Comments -->

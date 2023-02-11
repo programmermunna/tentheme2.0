@@ -219,9 +219,6 @@ $data = _fetch("service","id=$service_id");
 
 
 
-
-
-
           <!-- Item Comments -->
           <div data-item="item_comments" class="item_content hidden">
             <div class="flex justify-between items-center">
@@ -229,77 +226,24 @@ $data = _fetch("service","id=$service_id");
               </h3>
             </div>
             <div class="pt-6 space-y-3">
-
-
-
-            <?php 
-            $services = _fetch("services","id=$service_id");
-            $services['comment'];              
-            if($services['comment'] > 0){
-            ?>
               <div class="border rounded overflow-hidden">
-                    <?php                    
-                    $comment = _get("comment","post_id=$service_id");
-                    while ($row = mysqli_fetch_assoc($comment)) {
-                        $array[] = $row;
-                    }
 
-                    function buildTree($data, $parent = 0) {
-                        $tree = array();
-                        foreach ($data as $d) {
-                            if ($d['parent_id'] == $parent) {
-                                $children = buildTree($data, $d['id']);
-                                
-                                if (!empty($children)) {
-                                    $d['_children'] = $children;
-                                }
-                                $tree[] = $d;
-                            }
-                        }
-                        return $tree;
-                    } 
-                    $arr = buildTree($array);                    
+                <?php $comments = _get("comment","post_id=$service_id AND type='service' ORDER BY id DESC LIMIT 10");
+                  while($comment = mysqli_fetch_assoc($comments)){ ?>  
+                  <div class="p-4 border-b bg-gray-50">
+                    <div class="overflow-hidden flex items-center justify-between">
+                      <a href="#!" class="flex items-center gap-x-3 text-blue-500 font-medium">
+                        <img class="w-10 h-10 object-contain rounded-full"
+                          src="admin/upload/<?php echo $comment['img'];?>" alt="">
+                        <span><?php echo $comment['name']?></span>
+                      </a>
+                      <small><?php $time=$comment['time']; echo time_elapsed_string($time,true);?></small>
+                    </div>
+                    <?php echo $comment['content']?>
+                  </div>
+                <?php }?>
 
-                    
-                    function printTree($arr, $r = 0, $p = null) {
-                        foreach ($arr as $i => $t) {
-                            $dash = ($t['parent_id'] == 0) ? '' : str_repeat('30+',$r);
-                            $dash = array_sum(explode( '+', $dash));
-                            $img = $t['img'];
-                            $name = $t['name'];
-                            $content = $t['content'];
-                            $comment_id = $t['id'];
-                            $parent_id = $t['parent_id'];
-                            $time = $t['time'];
-                            $post_id = $_GET['service_id'];
-                            ?>
-                              <div class="p-4 border-b bg-gray-50" style="padding-left:<?php if($parent_id != 0){echo $dash;}else{ echo 20;}?>px">
-                                <div class="overflow-hidden flex items-center justify-between">
-                                  <a href="item.php?id=<?php echo $post_id?>&&comment=<?php echo $comment_id?>" class="flex items-center gap-x-3 text-blue-500 font-medium">
-                                    <img class="w-10 h-10 object-contain rounded-full"
-                                      src="admin/upload/<?php echo $img?>">
-                                    <span><?php echo $name?></span>
-                                  </a>
-                                  <small><?php echo time_elapsed_string($time,true);?></small>
-                                </div>
-                                <p class="mt-3"><?php echo $content?></p>
-                              </div>
-                            <?php
-
-                            if (isset($t['_children'])) {
-                                echo "<div>";
-                                printTree($t['_children'], ++$r, $t['parent_id']);
-                                --$r;
-                                echo "</div>";
-                            }
-                        }
-                    } 
-                    printTree($arr);
-                    ?>
-              </div>
-              <?php }?>
-
-              <?php                 
+                <?php                 
                 if(isset($_POST['send_message'])){
                     $user_id = $_SESSION['user_id'];
                     if($user_id<1){
@@ -315,18 +259,19 @@ $data = _fetch("service","id=$service_id");
                     $email = $user_info['email'];                  
                     $img = $user_info['file_name'];                  
                     $message = $_POST['message'];
-                    $time = time();
-                    $update = _update("services","comment = comment+1","id=$service_id");
-                    $insert = _insert("comment","post_id,parent_id, name, email, content, img, time" , "'$service_id','$parent_id', '$name', '$email', '$message', '$img', '$time'"); 
+                    $type = "service";
+
+                    $update = _update("service","comment = comment+1","id=$service_id");
+                    $insert = _insert("comment","post_id,parent_id,type, name, email, content, img, time" , "'$service_id','$parent_id', '$type', '$name', '$email', '$message', '$img', '$time'"); 
                     if($insert){
                         $msg='Message Sent Successfull';
-                        header("location:item.php?service_id=$service_id&&msg=$msg");
+                        header("location:service.php?service_id=$service_id&&msg=$msg");
                     }else{
                       echo "errro";
                     }
                     }}                
                 ?>
-              <div class="border mb-3">
+                <div class="border">
                     <div class="section-title mb-0">
                         <h4 class="m-0 text-uppercase font-weight-bold">Leave a comment</h4>
                     </div>
@@ -342,89 +287,12 @@ $data = _fetch("service","id=$service_id");
                         </form>
                     </div>
                 </div>
+
+
+
+              </div>
             </div>
-
-
-
-            
           </div>
-          <!-- Item Comments -->
-
-
-
-
-          <!-- Item Comments -->
-          <!-- <div data-item="item_comments" class="item_content hidden">
-            <div class="flex justify-between items-center">
-              <h3 class="flex items-center gap-x-3 text-xl font-medium"> <span><?php echo $data['comment']?> Comments found.</span>
-              </h3>
-            </div>
-
-            <div class="pt-6 space-y-3">
-              <div class="border rounded overflow-hidden">
-
-                <div class="p-4 border-b bg-gray-50">
-                  <div class="overflow-hidden flex items-center justify-between">
-                    <a href="#" class="flex items-center gap-x-3 text-blue-500 font-medium">
-                      <img class="w-10 h-10 object-contain rounded-full"
-                        src="https://randomuser.me/api/portraits/men/22.jpg" alt="">
-                      <span>John Doe</span>
-                    </a>
-                    <small>1 month ago</small>
-                  </div>
-                  <p class="mt-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique quam suscipit
-                    dicta, ab in
-                    laborum a iure, quibusdam velit eos distinctio dolorem!</p>
-                </div>
-
-                <div class="pl-8 pr-4 py-4">
-                  <div class="overflow-hidden flex items-center justify-between">
-                    <a href="#" class="flex items-center gap-x-3 text-blue-500 font-medium">
-                      <img class="w-10 h-10 object-contain rounded-full" src="https://i.ibb.co/Ryr9PQB/index.jpg"
-                        alt="">
-                      <span>Steve</span>
-                    </a>
-                    <small>1 month ago</small>
-                  </div>
-                  <p class="mt-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique quam suscipit
-                    dicta, ab in
-                    laborum a iure, quibusdam velit eos distinctio dolorem!</p>
-                </div>
-
-              </div>
-
-              <div class="border rounded overflow-hidden">
-
-                <div class="p-4 border-b bg-gray-50">
-                  <div class="overflow-hidden flex items-center justify-between">
-                    <a href="#" class="flex items-center gap-x-3 text-blue-500 font-medium">
-                      <img class="w-10 h-10 object-contain rounded-full"
-                        src="https://randomuser.me/api/portraits/men/23.jpg" alt="">
-                      <span>Steve Smith</span>
-                    </a>
-                    <small>1 month ago</small>
-                  </div>
-                  <p class="mt-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique quam suscipit
-                    dicta, ab in
-                    laborum a iure, quibusdam velit eos distinctio dolorem!</p>
-                </div>
-
-                <div class="pl-8 pr-4 py-4">
-                  <div class="overflow-hidden flex items-center justify-between">
-                    <a href="#" class="flex items-center gap-x-3 text-blue-500 font-medium">
-                      <img class="w-10 h-10 object-contain rounded-full" src="https://i.ibb.co/Ryr9PQB/index.jpg"
-                        alt="">
-                      <span>Shamim Reza</span>
-                    </a>
-                    <small>1 month ago</small>
-                  </div>
-                  <p class="mt-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique quam suscipit
-                    dicta, ab in
-                    laborum a iure, quibusdam velit eos distinctio dolorem!</p>
-                </div>
-              </div>
-            </div>
-          </div> -->
           <!-- Item Comments -->
 
 
