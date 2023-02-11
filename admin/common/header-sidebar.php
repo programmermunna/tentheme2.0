@@ -97,27 +97,15 @@
         </button>
         <ul class="ds_ul transition-all" data-ref="tentheme">
           <li>
-            <a href="./open-tickets.php">
+            <a href="./general-settings.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
               <span>General Setting</span>
             </a>
           </li>
           <li>
-            <a href="./open-tickets.php">
+            <a href="./advance-settings.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
               <span>Advance Setting</span>
-            </a>
-          </li>
-          <li>
-            <a href="./open-tickets.php">
-              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>Header Setting</span>
-            </a>
-          </li>
-          <li>
-            <a href="./open-tickets.php">
-              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>Footer Setting</span>
             </a>
           </li>
           <li>
@@ -133,6 +121,24 @@
             </a>
           </li>
 
+          <li>
+            <a href="./header-settings.php">
+              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
+              <span>Header Setting</span>
+            </a>
+          </li>
+          <li>
+            <a href="./social-settings.php">
+              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
+              <span>Social Setting</span>
+            </a>
+          </li>
+          <li>
+            <a href="./footer-settings.php">
+              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
+              <span>Footer Setting</span>
+            </a>
+          </li>          
         </ul>
       </div>
       <hr class="my-0">  
