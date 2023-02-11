@@ -27,7 +27,7 @@ $pending_item = mysqli_num_rows(_get("post","status='Publish'"));
                   </div>
                 
                   <?php 
-                  if(isset($_POST['submit'])){
+                  if(isset($_POST['check'])){
                     if(isset($_POST['check_list'])){
                       $check_list = $_POST['check_list'];
                       for($i=0;$i<count($check_list);$i++){
@@ -65,8 +65,7 @@ $pending_item = mysqli_num_rows(_get("post","status='Publish'"));
                     <?php 
                     if(isset($_GET['src'])){
                       $src = trim($_GET['src']);
-                      $post = _get("post","status='Pending' AND (title='$src' OR category='$src')");                       
-
+                      $post = _get("post","status='Pending' AND (title='$src' OR category='$src')");
                     }elseif(isset($_GET['status'])){
                       if($_GET['status']== 'Publish'){
                         $post =_get("post","status='Publish'");

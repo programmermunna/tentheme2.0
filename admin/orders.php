@@ -1,5 +1,12 @@
 <?php include("common/header-sidebar.php");?>
 <?php
+
+$notify_check = mysqli_num_rows(_get("cart","status=1 AND notify='New'"));
+if($notify_check>0){
+  $update_notify = _update("cart","notify='Old'","notify='New'");
+  header("location:orders.php");
+}
+
 $all_item = mysqli_num_rows(_getAll("cart"));
 $published_item = mysqli_num_rows(_get("cart","status=1 AND type='product'"));
 $pending_item = mysqli_num_rows(_get("cart","status=1 AND type='service'"));
@@ -25,7 +32,7 @@ $pending_item = mysqli_num_rows(_get("cart","status=1 AND type='service'"));
                   </div>
                 
                   <?php 
-                  if(isset($_POST['submit'])){
+                  if(isset($_POST['check'])){
                     if(isset($_POST['check_list'])){
                       $check_list = $_POST['check_list'];
                       for($i=0;$i<count($check_list);$i++){
@@ -112,10 +119,11 @@ $pending_item = mysqli_num_rows(_get("cart","status=1 AND type='service'"));
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $person['name']?></td>
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $person['email']?></td>
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo date("d-M-y",$data['time']);?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php if(isset($_GET['status'])){ echo $_GET['status'];}?> </td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo ucfirst($data['type'])?></td>
+                        <!-- <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php if(isset($_GET['status'])){ echo $_GET['status'];}?> </td> -->
                         <td class="text-center p-4 space-x-2 whitespace-nowrap lg:p-5">
                           <!-- <a href="edit-cart.php?src=edit-cart&&table=cart&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Edit</a> -->
-                          <a href="delete.php?src=all-cart&&table=cart&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Delete</a>
+                          <a href="delete.php?src=orders&&table=cart&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Delete</a>
                         </td>
                       </tr>
                       <?php }?>

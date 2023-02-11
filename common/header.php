@@ -120,6 +120,19 @@ $cr_url = substr($cr_url,strrpos($cr_url,'/')+1);
           </div>
         </li>
 
+        <div class="flex space-x-5">
+          <a target="_blank" href="<?php echo $website['facebook']?>"
+            class="bg-blue-600 text-white px-4 py-1 rounded shadow-sm">
+            <i class="fa-brands fa-facebook-f"></i>
+            <small></small>
+          </a>
+          <a target="_blank" href="<?php echo $website['youtube']?>"
+            class="bg-red-600 text-white px-4 py-1 rounded shadow-sm">
+            <i class="fa-brands fa-youtube"></i>
+            <small></small>
+          </a>
+        </div>
+
         <?php if($id<1){?>
         <li>
           <a class="flex items-center px-3 h-[44px]" href="cart.php">Cart</a>

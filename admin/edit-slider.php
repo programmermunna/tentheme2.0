@@ -49,13 +49,11 @@ if(isset($_POST['submit'])){
           </div>
 
           <div class="col-span-2 lg:col-span-1 flex flex-col gap-y-1">
-            <label for="pg_name">Title</label>
-            <select name="pg_name" class="input">
+            <label for="pg_name">Page</label>
+            <select disabled name="pg_name" class="input">
               <?php if($data['pg_name']=='index'){?>
               <option selected value="index">Home Page</option>
-              <option value="services">Services Page</option>
               <?php }else{?>
-              <option value="index">Home Page</option>
               <option selected value="services">Services Page</option>
               <?php }?>
             </select>

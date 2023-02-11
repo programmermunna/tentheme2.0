@@ -15,29 +15,10 @@
                     </div>
                   </div>
                     
-
-
-                    <!-- Table -->
-                    <?php 
-                  if(isset($_POST['check'])){
-                    if(isset($_POST['check_list'])){
-                      $check_list = $_POST['check_list'];
-                      for($i=0;$i<count($check_list);$i++){
-                        $delete = _delete("slider","id=$check_list[$i]");
-                      }
-                      $msg = "Delete Successfully";
-                      header("location:services-slider.php?msg=$msg");
-                    }
-                  }
-                  ?>
-                  <form action="" method="POST">
                     <!-- Table -->
                     <table class="min-w-full divide-y divide-gray-200 table-fixed">
                   <thead class="bg-white">
                     <tr>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">
-                        <input name="check" style="background:red;padding:5px 10px;color:#fff;border-radius:2px;" type="submit" value="Delete">
-                      </th>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Slide</th>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Title</th>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Button 1</th>
@@ -49,7 +30,7 @@
                   <tbody class="bg-white divide-y divide-gray-200">
                     <?php                     
                     
-                    $pagination = "ON";
+                    $pagination = NULL;
                     if (isset($_GET['page_no']) && $_GET['page_no']!="") {
                     $page_no = $_GET['page_no'];} else {$page_no = 1;}
                     $total_records_per_page = 10;
@@ -66,12 +47,9 @@
                     $i=0;
                     while($data = mysqli_fetch_assoc($slider)){ $i++
                     ?>
-                      <tr class="hover:bg-gray-100">
+                      <tr class="hover:bg-gray-100">                        
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5">
-                          <input name="check_list[]" type="checkbox" value="<?php echo $data['id']?>">
-                        </td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5">
-                        <img style="width: 200px;height:100px;object-fit:cover" src="upload/<?php echo $data['file_name']?>" >    
+                        <img style="width: 200px;height:50px;object-fit:cover" src="upload/<?php echo $data['file_name']?>" >    
                         </td>
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['title']?></td>
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['btn1']?></td>
@@ -85,7 +63,6 @@
                       
                     </tbody>
                   </table>
-                </form>
 
                 <?php if(isset($pagination)){?>
                 <div style="padding:20px 10px;">

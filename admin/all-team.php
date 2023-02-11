@@ -24,7 +24,7 @@ $pending_item = mysqli_num_rows(_get("team","status='unpublished'"));
                   </div>
                 
                   <?php 
-                  if(isset($_POST['submit'])){
+                  if(isset($_POST['check'])){
                     if(isset($_POST['check_list'])){
                       $check_list = $_POST['check_list'];
                       for($i=0;$i<count($check_list);$i++){

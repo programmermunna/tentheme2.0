@@ -47,7 +47,7 @@ $pending_item = mysqli_num_rows(_get("withdraw","status='Pending'"));
                         $delete = _delete("withdraw","id=$check_list[$i]");
                       }
                       $msg = "Delete Successfully";
-                      header("location:pending-withdraw.php?msg=$msg");
+                      header("location:withdraw.php?msg=$msg");
                     }
                   }
                   ?>

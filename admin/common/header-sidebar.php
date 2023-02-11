@@ -18,6 +18,7 @@
     $notify_tickets = mysqli_num_rows(_get("tickets","status='Pending' AND notify='new'"));
     $notify_deposit = mysqli_num_rows(_get("deposit","status='Pending' AND notify='new'"));
     $notify_withdraw = mysqli_num_rows(_get("withdraw","status='Pending' AND notify='new'"));
+    $notify_order = mysqli_num_rows(_get("cart","status=1 AND notify='new'"));
 
 ?>
 <!DOCTYPE html>
@@ -93,7 +94,6 @@
         <button class="ds_title" data-ref="tentheme"><span class="text-xs transition-all text-pink-600">
           <i class="fa-solid fa-briefcase"></i></span><span class="tracking-wider block">Tentheme 2.0</span><span
             class="text-xs opacity-50 transition-all"><i class="fa-solid fa-chevron-up"></i></span>
-            <?php if($notify_tickets>0){ ?><span style="background:#ff3a10;color:#fff;padding:5px;border-radius:50%">0<?php echo $notify_tickets?></span><?php }?>
         </button>
         <ul class="ds_ul transition-all" data-ref="tentheme">
           <li>
@@ -127,9 +127,9 @@
             </a>
           </li>
           <li>
-            <a href="./service-slider.php">
+            <a href="./services-slider.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>Service Page Slider</span>
+              <span>Services Page Slider</span>
             </a>
           </li>
 
@@ -334,12 +334,14 @@
         <button class="ds_title" data-ref="order"><span class="text-xs transition-all text-pink-600"><i
               class="fa-solid fa-briefcase"></i></span><span class="tracking-wider block">Orders</span><span
             class="text-xs opacity-50 transition-all"><i class="fa-solid fa-chevron-up"></i></span>
+            <?php if($notify_order>0){ ?><span style="background:#ff3a10;color:#fff;padding:5px;border-radius:50%">0<?php echo $notify_order?></span><?php }?>
         </button>
         <ul class="ds_ul transition-all" data-ref="order">
           <li>
             <a href="./orders.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>All Orders</span>              
+              <span>All Orders</span>    
+            <?php if($notify_order>0){ ?><span style="background:#ff3a10;color:#fff;padding:5px;border-radius:50%">0<?php echo $notify_order?></span><?php }?>
             </a>
           </li>
         </ul>
