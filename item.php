@@ -2,10 +2,6 @@
 <?php include("common/header.php");?>
 <!-- Header area -->
 <?php 
-$review = "OFF";
-
-
-
 if(isset($_GET['product_id'])){
   $product_id = $_GET['product_id'];
   $data = _fetch("products","id=$product_id");
@@ -73,7 +69,7 @@ if(isset($_GET['product_id'])){
           <span class="font-normal tracking-wide">Details</span>
         </a>
 
-        <?php if($review == "ON"){ ?>
+        <?php if($product_review == "ON"){ ?>
         <a href="#" data-item="item_reviews" class="item_content_toggler flex items-center gap-x-2 px-6 py-3">
           <span class="font-normal tracking-wide">Reviews</span>
           <p class="relative text-sm h-fit w-fit flex items-center justify-center text-gray-200">
@@ -162,7 +158,7 @@ if(isset($_GET['product_id'])){
           </div>
 
           <!-- Item Reviews -->
-          <?php if($review == "ON"){ ?>
+          <?php if($product_review == "ON"){ ?>
           <div data-item="item_reviews" class="item_content hidden">
             <div class="flex justify-between items-center">
               <h3 class="flex items-center gap-x-3 text-xl font-medium"> <span><?php echo $data['review']?> Reviews</span>

@@ -14,6 +14,9 @@ $website = _fetch("website","id=1");
 $limit_setting = _fetch("limit_setting","id=$id");
 
 
+$product_review = "OFF";
+$service_review = "OFF";
+
 $cr_url = $_SERVER['SCRIPT_NAME'];
 $cr_url = substr($cr_url,strrpos($cr_url,'/')+1);
 ?>

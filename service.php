@@ -49,6 +49,7 @@ $data = _fetch("service","id=$service_id");
           <span class="font-normal tracking-wide">Details</span>
         </a>
 
+        <?php if($service_review == "ON"){ ?>
         <a href="#" data-item="item_reviews" class="item_content_toggler flex items-center gap-x-2 px-6 py-3">
           <span class="font-normal tracking-wide">Reviews</span>
           <p class="relative text-sm h-fit w-fit flex items-center justify-center text-gray-200">
@@ -69,6 +70,7 @@ $data = _fetch("service","id=$service_id");
           <span>4.3</span>
           <span class="px-2 text-xs py-1 rounded bg-cyan-700 text-white shadow block"><?php echo $data['review']?></span>
         </a>
+        <?php }?>
 
         <a href="#" data-item="item_comments" class="item_content_toggler flex items-center gap-x-2 px-6 py-3">
           <span class="font-normal tracking-wide">Comments</span>
@@ -131,13 +133,12 @@ $data = _fetch("service","id=$service_id");
                 </div>
               </div>
             </div>
-
-            <!-- Others Theme Content -->
             <div><?php echo $data['description']?></div>
-
           </div>
 
+
           <!-- Item Reviews -->
+          <?php if($service_review == "ON"){ ?>
           <div data-item="item_reviews" class="item_content hidden">
 
             <div class="flex justify-between items-center">
@@ -216,6 +217,7 @@ $data = _fetch("service","id=$service_id");
             </div>
           </div>
           <!-- review -->
+          <?php }?>
 
 
 
