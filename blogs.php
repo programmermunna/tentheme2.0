@@ -37,14 +37,20 @@
 
             <div class="div">
                 <div class="w-full grid grid-cols-2 gap-6">
-                <?php $post = _get("post","status='Publish' ORDER BY id DESC");          
+                <?php 
+                if(isset($_GET['category'])){
+                    $category = $_GET['category'];
+                    $post = _get("post","status='Publish' AND category='$category' ORDER BY id DESC");
+                }else{
+                    $post = _get("post","status='Publish' ORDER BY id DESC");
+                }
                 while($data = mysqli_fetch_assoc($post)){
                 $author_id = $data['pid'];
                 $author = _fetch("person","id=$author_id"); 
                 ?>
                     <div class="p-5 bg-white shadow rounded relative">
                         <a href="blog.php?id=<?php echo $data['id']?>" class="absolute inset-0 m-auto z-40"></a>
-                        <img class="w-full" src="admin/upload/<?php echo $data['file_name']?>">
+                        <img style="height:200px" class="w-full" src="admin/upload/<?php echo $data['file_name']?>">
                         <h3 class="text-lg font-semibold tracking-wide my-4"><?php echo $data['title']?></h3>
                         <div class="flex items-center gap-2 relative z-50 truncate flex-wrap w-full"
                             style="justify-content: space-between;">

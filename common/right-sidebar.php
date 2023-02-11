@@ -39,7 +39,7 @@
               <div class="py-0">
               <?php $index = mysqli_num_rows(_get("$index","status='Publish'"));?>
                 <div class="flex justify-between items-center p-2 hover:bg-cyan-800 hover:text-white rounded">
-                  <h6 class="text-sm font-medium">All Categories</h6>
+                  <a href="<?php echo $cr_index;?>.php"><h6 class="text-sm font-medium">All Categories</h6></a>
                   <small><?php echo $index; ?></small>
                 </div>
                 <ul class="pb-3">

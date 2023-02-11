@@ -29,7 +29,7 @@
                         <div class="py-0">
                             <div
                                 class="flex justify-between items-center p-2 hover:bg-cyan-800 hover:text-white rounded">
-                                <h6 class="text-sm font-medium">All Categories</h6>
+                                <a href="blogs.php"><h6 class="text-sm font-medium">All Categories</h6></a>
                                 <small><?php echo $posts; ?></small>
                             </div>
                             <ul class="pb-3">
