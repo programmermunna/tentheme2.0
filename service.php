@@ -2,10 +2,10 @@
 <?php include("common/header.php");?>
 <!-- Header area -->
 <?php 
-if(isset($_GET['id'])){
-  $id = $_GET['id'];
+if(isset($_GET['service_id'])){
+  $service_id = $_GET['service_id'];
 }
-$data = _fetch("service","id=$id");
+$data = _fetch("service","id=$service_id");
 
 ?>
     <!-- Sub Header -->
@@ -15,14 +15,11 @@ $data = _fetch("service","id=$id");
 
       <!-- Page Tree Links -->
       <div class="items-center justify-start space-x-2 text-gray-500">
-
         <a style="background-image: conic-gradient(from 1turn, #0e9479, #16a085)"
           class="text-white px-4 py-1.5 rounded shadow-sm" href="index.php">
           <i class="fa-solid fa-house"></i>
         </a>
-
         <small class="text-xs"> <i class="fa-solid fa-chevron-right"></i></small>
-
         <a style="background-image: conic-gradient(from 1turn, #0e9479, #16a085)"
           class="text-white px-4 py-1.5 rounded shadow-sm" href="item.php"><?php echo $data['title']?></a>
 
@@ -165,7 +162,6 @@ $data = _fetch("service","id=$id");
 
             <!-- reiviews -->
             <div class="pt-6 space-y-4">
-              <!-- review -->
               <div class="rounded border overflow-hidden">
                 <div class="flex items-center justify-between bg-gray-100 p-4">
                   <p class="relative text-sm h-fit w-fit flex items-center justify-center text-gray-200">
@@ -192,7 +188,6 @@ $data = _fetch("service","id=$id");
                   vitae. Quasi, voluptates!</p>
               </div>
 
-              <!-- review -->
               <div class="rounded border overflow-hidden">
                 <div class="flex items-center justify-between bg-gray-100 p-4">
                   <p class="relative text-sm h-fit w-fit flex items-center justify-center text-gray-200">
@@ -218,21 +213,153 @@ $data = _fetch("service","id=$id");
                   quos assumenda totam non magnam alias odio illo perspiciatis, soluta maxime hic accusantium, optio
                   vitae. Quasi, voluptates!</p>
               </div>
-
             </div>
-
-
           </div>
+          <!-- review -->
+
+
+
+
+
 
           <!-- Item Comments -->
           <div data-item="item_comments" class="item_content hidden">
             <div class="flex justify-between items-center">
               <h3 class="flex items-center gap-x-3 text-xl font-medium"> <span><?php echo $data['comment']?> Comments found.</span>
+              </h3>
+            </div>
+            <div class="pt-6 space-y-3">
 
+
+
+            <?php 
+            $services = _fetch("services","id=$service_id");
+            $services['comment'];              
+            if($services['comment'] > 0){
+            ?>
+              <div class="border rounded overflow-hidden">
+                    <?php                    
+                    $comment = _get("comment","post_id=$service_id");
+                    while ($row = mysqli_fetch_assoc($comment)) {
+                        $array[] = $row;
+                    }
+
+                    function buildTree($data, $parent = 0) {
+                        $tree = array();
+                        foreach ($data as $d) {
+                            if ($d['parent_id'] == $parent) {
+                                $children = buildTree($data, $d['id']);
+                                
+                                if (!empty($children)) {
+                                    $d['_children'] = $children;
+                                }
+                                $tree[] = $d;
+                            }
+                        }
+                        return $tree;
+                    } 
+                    $arr = buildTree($array);                    
+
+                    
+                    function printTree($arr, $r = 0, $p = null) {
+                        foreach ($arr as $i => $t) {
+                            $dash = ($t['parent_id'] == 0) ? '' : str_repeat('30+',$r);
+                            $dash = array_sum(explode( '+', $dash));
+                            $img = $t['img'];
+                            $name = $t['name'];
+                            $content = $t['content'];
+                            $comment_id = $t['id'];
+                            $parent_id = $t['parent_id'];
+                            $time = $t['time'];
+                            $post_id = $_GET['service_id'];
+                            ?>
+                              <div class="p-4 border-b bg-gray-50" style="padding-left:<?php if($parent_id != 0){echo $dash;}else{ echo 20;}?>px">
+                                <div class="overflow-hidden flex items-center justify-between">
+                                  <a href="item.php?id=<?php echo $post_id?>&&comment=<?php echo $comment_id?>" class="flex items-center gap-x-3 text-blue-500 font-medium">
+                                    <img class="w-10 h-10 object-contain rounded-full"
+                                      src="admin/upload/<?php echo $img?>">
+                                    <span><?php echo $name?></span>
+                                  </a>
+                                  <small><?php echo time_elapsed_string($time,true);?></small>
+                                </div>
+                                <p class="mt-3"><?php echo $content?></p>
+                              </div>
+                            <?php
+
+                            if (isset($t['_children'])) {
+                                echo "<div>";
+                                printTree($t['_children'], ++$r, $t['parent_id']);
+                                --$r;
+                                echo "</div>";
+                            }
+                        }
+                    } 
+                    printTree($arr);
+                    ?>
+              </div>
+              <?php }?>
+
+              <?php                 
+                if(isset($_POST['send_message'])){
+                    $user_id = $_SESSION['user_id'];
+                    if($user_id<1){
+                        header("location:login.php?id=$service_id&&err=Please login first");
+                    }else{
+                      if(isset($_GET['comment'])){
+                      $parent_id = $_GET['comment'];
+                      }else{
+                      $parent_id = $_POST['parent_id'];
+                      }
+                    $user_info = _fetch("person","id=$user_id");
+                    $name = $user_info['name'];
+                    $email = $user_info['email'];                  
+                    $img = $user_info['file_name'];                  
+                    $message = $_POST['message'];
+                    $time = time();
+                    $update = _update("services","comment = comment+1","id=$service_id");
+                    $insert = _insert("comment","post_id,parent_id, name, email, content, img, time" , "'$service_id','$parent_id', '$name', '$email', '$message', '$img', '$time'"); 
+                    if($insert){
+                        $msg='Message Sent Successfull';
+                        header("location:item.php?service_id=$service_id&&msg=$msg");
+                    }else{
+                      echo "errro";
+                    }
+                    }}                
+                ?>
+              <div class="border mb-3">
+                    <div class="section-title mb-0">
+                        <h4 class="m-0 text-uppercase font-weight-bold">Leave a comment</h4>
+                    </div>
+                    <div class="bg-white border p-4">
+                        <form action="" method="POST">                       
+                            <div class="form-group">
+                                <input name="parent_id" type="hidden" value="0">
+                                <textarea style="width:100%;border:1px solid #ddd;padding:20px;outline:none;border:1px solid #ddd;" name="message" cols="30" rows="5" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group mb-0">
+                                <input name="send_message" type="submit" value="Leave a comment" class="btn btn-primary font-weight-semi-bold py-2 px-3">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+            
+          </div>
+          <!-- Item Comments -->
+
+
+
+
+          <!-- Item Comments -->
+          <!-- <div data-item="item_comments" class="item_content hidden">
+            <div class="flex justify-between items-center">
+              <h3 class="flex items-center gap-x-3 text-xl font-medium"> <span><?php echo $data['comment']?> Comments found.</span>
               </h3>
             </div>
 
-            <!-- comments -->
             <div class="pt-6 space-y-3">
               <div class="border rounded overflow-hidden">
 
@@ -295,16 +422,15 @@ $data = _fetch("service","id=$id");
                     dicta, ab in
                     laborum a iure, quibusdam velit eos distinctio dolorem!</p>
                 </div>
-
               </div>
-
-
             </div>
+          </div> -->
+          <!-- Item Comments -->
 
-          </div>
+
+
 
         </div>
-
         <!-- RightBar Info -->
         <div class="w-full lg:min-w-[350px] lg:w-[350px]">
 
@@ -349,15 +475,15 @@ $data = _fetch("service","id=$id");
             <br>
 
             <div>
-              <h3 class="bg-green-600 text-white p-3 rounded-t">Recommended Products</h3>
+              <h3 class="bg-green-600 text-white p-3 rounded-t">Recommended Services</h3>
               <div class="bg-[#f3f3f3]">
 
               <?php 
               $category = $data['category'];
-              $similar = _get("products","category='$category' LIMIT 10");
-              while($similar = mysqli_fetch_assoc($similar)){
+              $similars = _get("service","category='$category' LIMIT 3");
+              while($similar = mysqli_fetch_assoc($similars)){
               ?>
-                <a href="service.php?id=<?php echo $similar['id']?>" class="block px-4 py-6 pb-0 hover:bg-green-100">
+                <a href="service.php?service_id=<?php echo $similar['id']?>" class="block px-4 py-6 pb-0 hover:bg-green-100">
                   <div class="flex items-start gap-x-4">
                     <h2 class="text-base font-semibold text-gray-700 text-left w-7/12"><?php echo $similar['title']?></h2>
                     <img class="w-5/12" src="admin/upload/<?php echo $similar['file_name1']?>">

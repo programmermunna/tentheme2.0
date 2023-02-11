@@ -271,11 +271,8 @@ if(isset($_GET['product_id'])){
           <div data-item="item_comments" class="item_content hidden">
             <div class="flex justify-between items-center">
               <h3 class="flex items-center gap-x-3 text-xl font-medium"> <span><?php echo $data['comment']?> Comments found.</span>
-
               </h3>
             </div>
-
-            <!-- comments -->
             <div class="pt-6 space-y-3">
             <?php 
             $products = _fetch("products","id=$product_id");
@@ -387,14 +384,11 @@ if(isset($_GET['product_id'])){
                         </form>
                     </div>
                 </div>
-
-
             </div>
-
           </div>
+          <!-- Item Comments -->
 
         </div>
-
         <!-- RightBar Info -->
         <div class="w-full lg:min-w-[350px] lg:w-[350px]">
 
@@ -495,7 +489,7 @@ if(isset($_GET['product_id'])){
 
               <?php 
               $category = $data['category'];
-              $similars = _get("products","category='$category' LIMIT 10");
+              $similars = _get("products","category='$category' LIMIT 3");
               while($similar = mysqli_fetch_assoc($similars)){
               ?>
                 <a href="item.php?id=<?php echo $similar['id']?>" class="block px-4 py-6 pb-0 hover:bg-green-100">
