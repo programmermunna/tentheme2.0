@@ -127,7 +127,7 @@ $pending_item = mysqli_num_rows(_get("deposit","status='Pending'"));
                           <td class="p-4 text-sm font-normal text-green-500 whitespace-nowrap lg:p-5"><?php echo $data['status']?></td>
                         <?php }?>
                         <td class="text-center p-4 space-x-2 whitespace-nowrap lg:p-5">
-                          <a id="add_bank" href="approve-deposit.php?src=edit-deposit&&table=deposit&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Approve</a>
+                          <a id="add_bank" href="approve-deposit.php?src=deposits&&table=deposit&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Approve</a>
                           <a href="delete.php?src=deposits&&table=deposit&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Delete</a>                          
                         </td>
                       </tr>

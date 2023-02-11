@@ -101,7 +101,8 @@
             $check = _fetch("cart","pid=$id AND cart_id=$service_id AND type='service'");
             if(!$check){
               $balance = _update("person","balance=balance-$total_amount","id=$id");
-              $insert = _insert("cart","pid,cart_id,type,time","$id,$service_id,'service',$time");
+              $update_service = _update("service","sell=sell+1","id=$service_id");
+              $insert = _insert("cart","pid,cart_id,type,status,time","$id,$service_id,'service',1,$time");
 
               $ticket_id = rand(1000,99999999);
               $subject = $service['title'];

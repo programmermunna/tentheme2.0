@@ -12,7 +12,7 @@ if(isset($_GET['src'])){
   $update = _update("$table","status='Success'","id='$id'");
   if($update && $update_person){
     $msg = "Successfully Updated";
-    header("location:pending-deposits.php?msg=$msg");
+    header("location:deposits.php?msg=$msg");
   }
 }
 ?>

@@ -112,9 +112,14 @@ if($id<1){
           $total_amount = $_POST['total_amount'];
           $old_balance = $person['balance'];
           if($old_balance>$total_amount){
-            $balance = _update("person","balance=balance-$total_amount","id=$id");
-            $update = _update("cart","status=1","pid=$id");
-            if($update && $balance){
+            $balance = _update("person","balance=balance-$total_amount","id=$id");            
+            $carts = _get("cart","status=0","pid=$id");
+            while($cart = mysqli_fetch_assoc($carts)){
+              $product_id = $cart['cart_id'];
+              $update_product = _update("products","sell=sell+1","id=$product_id");
+            }
+            $update_cart = _update("cart","status=1","pid=$id AND type='product'");
+            if($update_cart && $balance){
               $msg = "Congratulations for Purchase.";
               header("location:dashboard.php?msg=$msg");
             }

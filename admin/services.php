@@ -11,29 +11,7 @@ $pending_item = mysqli_num_rows(_get("service","status='Pending'"));
                 <div class="overflow-auto bg-white">
                   <div style="display:flex;justify-content:space-between">
                     <div style="display:flex">
-                    <select style="margin: 15px;width:300px;" name="" class="input" id="status">
-                          <?php if(isset($_GET['src'])){?>
-                          <option style="display:none" selected value="<?php echo $_GET['src']?>"><?php echo $_GET['src']?></option>
-                          <?php }else{?>
-                          <option style="display:none" selected>Category</option>
-                          <?php }?>
-                          <option value="Draft">Draft</option>
-                          <option value="Publish">Publish</option>
-                      </select>
-
                       <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="services.php"><i class="fa-solid fa-rotate-right"></i> Refresh</a>
-
-                      <script type="text/javascript">
-                         $(function () {
-                              $('#status').on('change', function () {
-                                  var val = $(this).find("option:selected").val();
-                                  var url = self.location.href.split('?')[0] + '?status=' +val;
-                                  if (url != "") {
-                                      window.location.href = url;
-                                  }
-                              });
-                          });
-                      </script>
                     </div>
 
                     <div>
