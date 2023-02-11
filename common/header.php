@@ -85,7 +85,7 @@ $cr_url = substr($cr_url,strrpos($cr_url,'/')+1);
           <a class="flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white" href="services.php">Services</a>
         </li>
         <li>
-          <a class="flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white" href="posts.php">posts</a>
+          <a class="flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white" href="blogs.php">Blogs</a>
         </li>
         <li>
           <a class="flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white" href="team.php">Team</a>

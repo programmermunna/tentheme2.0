@@ -24,7 +24,7 @@ $data = _fetch("post","id=$id");
         <small class="text-xs"> <i class="fa-solid fa-chevron-right"></i></small>
 
         <a style="background-image: conic-gradient(from 1turn, #0e9479, #16a085)"
-            class="text-white px-4 py-1.5 rounded shadow-sm" href="post.php"><?php echo $data['title']?></a>
+            class="text-white px-4 py-1.5 rounded shadow-sm" href="blog.php"><?php echo $data['title']?></a>
 
     </div>
     <br>
@@ -56,7 +56,7 @@ $data = _fetch("post","id=$id");
                         </a>
 
                         <div class="pt-6 pb-4 gap-x-4 flex-wrap flex justify-center">
-                            <a target="_blank" href="post.php?category=<?php echo $data['category']?>"
+                            <a target="_blank" href="blog.php?category=<?php echo $data['category']?>"
                                 class="block px-4 py-2 rounded bg-blue-500 hover:bg-blue-600 focus:ring-2 ring-blue-500 focus:ring-offset-2 w-fit  text-white tracking-wide space-x-1">
                                 <i class="fa-solid fa-tags"></i>
                                 <span><?php echo $data['category']?></span>

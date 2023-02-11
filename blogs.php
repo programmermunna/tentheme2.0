@@ -7,7 +7,7 @@
 
     <!-- Page Name Title -->
     <h3 class="text-4xl font-medium tracking-wide">
-        posts
+        Blogs
     </h3>
 
     <!-- Page Tree Links -->
@@ -21,7 +21,7 @@
         <small class="text-xs"> <i class="fa-solid fa-chevron-right"></i></small>
 
         <a style="background-image: conic-gradient(from 1turn, #0e9479, #16a085)"
-            class="text-white px-4 py-1.5 rounded shadow-sm" href="posts.php"> posts
+            class="text-white px-4 py-1.5 rounded shadow-sm" href="blogs.php"> Blogs
         </a>
 
     </div>
@@ -43,7 +43,7 @@
                 $author = _fetch("person","id=$author_id"); 
                 ?>
                     <div class="p-5 bg-white shadow rounded relative">
-                        <a href="post.php?id=<?php echo $data['id']?>" class="absolute inset-0 m-auto z-40"></a>
+                        <a href="blog.php?id=<?php echo $data['id']?>" class="absolute inset-0 m-auto z-40"></a>
                         <img class="w-full" src="admin/upload/<?php echo $data['file_name']?>">
                         <h3 class="text-lg font-semibold tracking-wide my-4"><?php echo $data['title']?></h3>
                         <div class="flex items-center gap-2 relative z-50 truncate flex-wrap w-full"
@@ -104,7 +104,7 @@
 
 
 
-            <?php include("common/post_sidebar.php")?>
+            <?php include("common/blog_sidebar.php")?>
 
 
 
