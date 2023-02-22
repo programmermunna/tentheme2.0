@@ -25,7 +25,7 @@ if(isset($_GET['ticket_id'])){
           class="text-white px-4 py-1.5 rounded shadow-sm" href="ticket.php"> ticket
         </a>
       </div>
-    </div>
+    </div> 
   </header>
 
   <main style="min-height: calc(100vh - 80px)">
