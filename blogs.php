@@ -27,7 +27,7 @@
     </div>
 
 </div>
-</header>
+</header>  
 
 
 <main class="min-h-screen py-12">
