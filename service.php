@@ -49,7 +49,7 @@ $data = _fetch("service","id=$service_id");
           <span class="font-normal tracking-wide">Details</span>
         </a>
 
-        <?php if($service_review == "ON"){ ?>
+        <?php if($review_service == "checked"){ ?>
         <a href="#" data-item="item_reviews" class="item_content_toggler flex items-center gap-x-2 px-6 py-3">
           <span class="font-normal tracking-wide">Reviews</span>
           <p class="relative text-sm h-fit w-fit flex items-center justify-center text-gray-200">
@@ -138,7 +138,7 @@ $data = _fetch("service","id=$service_id");
 
 
           <!-- Item Reviews -->
-          <?php if($service_review == "ON"){ ?>
+          <?php if($review_service == "checked"){ ?>
           <div data-item="item_reviews" class="item_content hidden">
 
             <div class="flex justify-between items-center">
@@ -344,6 +344,7 @@ $data = _fetch("service","id=$service_id");
 
             <br>
 
+            <?php if($related_service == "checked"){ ?>
             <div>
               <h3 class="bg-green-600 text-white p-3 rounded-t">Recommended Services</h3>
               <div class="bg-[#f3f3f3]">
@@ -360,9 +361,10 @@ $data = _fetch("service","id=$service_id");
                   </div>
                 </a>
                 <?php }?>
-
               </div>
             </div>
+            <?php }?>
+
 
           </div>
         </div>

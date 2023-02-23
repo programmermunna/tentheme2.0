@@ -22,9 +22,9 @@
           </div>
           </div>
           
+          <?php if($team_social == "checked"){ ?>
           <div class="py-5">
               <ul class="flex space-x-4 sm:mt-0">
-
                 <li>
                   <a style="font-size: 30px;" href="tel:<?php echo $team['whatsapp']?>" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
                   <i class="fa-solid fa-phone"></i>
@@ -47,6 +47,7 @@
                 </li>
               </ul>
             </div>
+            <?php }?>
 
 
         </div>

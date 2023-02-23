@@ -69,7 +69,7 @@ if(isset($_GET['product_id'])){
           <span class="font-normal tracking-wide">Details</span>
         </a>
 
-        <?php if($review_product == "checked"){ ?>
+        <?php if($product_review == "ON"){ ?>
         <a href="#" data-item="item_reviews" class="item_content_toggler flex items-center gap-x-2 px-6 py-3">
           <span class="font-normal tracking-wide">Reviews</span>
           <p class="relative text-sm h-fit w-fit flex items-center justify-center text-gray-200">
@@ -108,6 +108,7 @@ if(isset($_GET['product_id'])){
 
         <!-- Theme Content -->
         <div class="w-full pt-12">
+
           <!-- Item Details -->
           <div data-item="item_details" class="item_content w-full space-y-6">
             <!-- Theme Thumbnail -->
@@ -131,7 +132,6 @@ if(isset($_GET['product_id'])){
                 </a>
 
 
-                <?php if($share_product == "checked"){ ?>
                 <div class="flex gap-x-0.5 flex-wrap">
                   <a href=""
                     class=" block px-3 py-2 rounded-l bg-gray-500 hover:bg-gray-500 focus:ring-2 focus:ring-gray-300 focus:ring-offset-1 w-fit text-white tracking-wide space-x-1">
@@ -149,9 +149,6 @@ if(isset($_GET['product_id'])){
                       class="fa-brands fa-youtube"></i>
                   </a>
                 </div>
-                <?php }?>
-
-
               </div>
             </div>
 
@@ -161,7 +158,7 @@ if(isset($_GET['product_id'])){
           </div>
 
           <!-- Item Reviews -->
-          <?php if($review_product == 'checked'){ ?>
+          <?php if($product_review == "ON"){ ?>
           <div data-item="item_reviews" class="item_content hidden">
             <div class="flex justify-between items-center">
               <h3 class="flex items-center gap-x-3 text-xl font-medium"> <span><?php echo $data['review']?> Reviews</span>
@@ -238,7 +235,27 @@ if(isset($_GET['product_id'])){
                   vitae. Quasi, voluptates!</p>
               </div>
 
-            
+<!-- ---------------reveiw----system----------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ---------------reveiw----system----------------------- -->              
             </div>
           </div>
          <?php }?>
@@ -253,10 +270,10 @@ if(isset($_GET['product_id'])){
               </h3>
             </div>
             <div class="pt-6 space-y-3">
-
-              <div class="border rounded overflow-hidden">                   
+              <div class="border rounded overflow-hidden">
+                   
               <?php $comments = _get("comment","post_id=$product_id AND type='product' ORDER BY id DESC LIMIT 10");
-                while($comment = mysqli_fetch_assoc($comments)){ ?>
+                while($comment = mysqli_fetch_assoc($comments)){ ?> 
                   <div class="p-4 border-b bg-gray-50">
                     <div class="overflow-hidden flex items-center justify-between">
                       <a href="#!" class="flex items-center gap-x-3 text-blue-500 font-medium">
@@ -269,6 +286,7 @@ if(isset($_GET['product_id'])){
                     <p class="mt-3"><?php echo $comment['content']?></p>
                   </div>
               <?PHP }?>
+
               </div>
 
               <?php                 
@@ -320,11 +338,6 @@ if(isset($_GET['product_id'])){
           <!-- Item Comments -->
 
         </div>
-
-
-
-
-        
         <!-- RightBar Info -->
         <div class="w-full lg:min-w-[350px] lg:w-[350px]">
 
@@ -419,7 +432,6 @@ if(isset($_GET['product_id'])){
 
             <br>
 
-            <?php if($related_product == "checked"){ ?>
             <div>
               <h3 class="bg-green-600 text-white p-3 rounded-t">Recommended Products</h3>
               <div class="bg-[#f3f3f3]">
@@ -437,9 +449,9 @@ if(isset($_GET['product_id'])){
                   <!-- <p class="text-gray-500 py-5 border-b">Lorem ipsum dolor sit amet consectetur.</p> -->
                 </a>
                 <?php }?>
+
               </div>
             </div>
-            <?php }?>
 
           </div>
         </div>

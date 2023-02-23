@@ -3,7 +3,7 @@
     <div class="container grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-12">
 
       <div class="space-y-6">
-        <img class="w-36" src="admin/upload/<?php echo $website['file_name']?>" alt="">
+        <img class="w-36" src="admin/upload/<?php echo $website['footer_img']?>" alt="">
         <div class="flex space-x-5">
           <a target="_blank" href="<?php echo $website['facebook']?>"
             class="bg-blue-600 text-white px-4 py-1 rounded shadow-sm">

@@ -436,21 +436,6 @@ if (all_method_name) {
   });
 }
 
-// ------------pop up message-----------
-// Popup Message
-// const popup_message = document.getElementById("popup_message");
-// function show_popup_message(message) {
-//   popup_message.innerHTML += `
-//   <div class="flex_center gap-2 fixed top-20 right-16 z-50 p-2 rounded bg-green-600 text-white">
-//   <span>✔</span>
-//   <span>${message}</span>
-//   </div>
-//   `;
-//   setTimeout(() => {
-//     popup_message.innerHTML = "";
-//   }, 1500);
-// }
-
 window.addEventListener('DOMContentLoaded', () => {
   const popup_msg = document.getElementById("popup_msg");
   if (popup_msg) {

@@ -72,7 +72,7 @@
           <div class="grid grid-cols-12 gap-x-6 p-6 bg-white item_shadow">
             <div class="col-span-5">
               <div>
-                <a href="service.php?id=<?php echo $data['id']?>">
+                <a href="service.php?service_id=<?php echo $data['id']?>">
                 <img class="rounded"
                   src="admin/upload/<?php echo $data['file_name1']?>">
                 </a>
@@ -86,7 +86,7 @@
                 </a>
                 <div class="w-full flex gap-x-6">
                   <ul class="list_icon space-y-2 pl-2 text-gray-700 w-[420px]">
-                    <a href="service.php?id=<?php echo $data['id']?>">
+                    <a href="service.php?service_id=<?php echo $data['id']?>">
                       <?php echo $data['mini_content']?>
                     </a>
                   </ul>
@@ -96,11 +96,11 @@
                       <h3 class="text-semibold text-xl font-semibold tracking-wide"> TK. <?php echo $data['sell_price']?> </h3>
                       <p><?php echo $data['sell']?> Sales</p>
                     </div>
-                    <a href="service.php?id=<?php echo $data['id']?>"
+                    <a href="service.php?service_id=<?php echo $data['id']?>"
                       class="w-fit px-6 border shadow-sm py-2 border-cyan-700 hover:bg-cyan-900 rounded hover:text-white text-cyan-900 text-sm focus:ring-2 focus:border-transparent flex items-center gap-x-2">
                       <i class="fa-solid fa-cart-shopping"></i>
                       <span>Buy Now</span>
-                    </a>
+                    </a> 
                   </div>
                 </div>
               </div>

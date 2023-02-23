@@ -25,7 +25,7 @@ if(isset($_GET['cart'])){
       echo "somethings error;";
     }
   }
-?> 
+?>
     <!-- Sub Header -->
     <div class="container space-y-6 py-24">
 

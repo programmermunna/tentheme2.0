@@ -12,10 +12,16 @@ $id = 0;
 $person = _fetch("person","id=$id");
 $website = _fetch("website","id=1");
 $limit_setting = _fetch("limit_setting","id=$id");
+$general_setting = _fetch("general_setting","id=1");
 
-
-$product_review = "OFF";
-$service_review = "OFF";
+$header_social_link = $general_setting['header_social_link'];
+$review_product = $general_setting['review_product'];
+$share_product = $general_setting['share_product'];
+$related_product = $general_setting['related_product'];
+$review_service = $general_setting['review_service'];
+$related_service = $general_setting['related_service'];
+$ad_show = $general_setting['ad_show'];
+$team_social = $general_setting['team_social'];
 
 $cr_url = $_SERVER['SCRIPT_NAME'];
 $cr_url = substr($cr_url,strrpos($cr_url,'/')+1);
@@ -123,18 +129,20 @@ $cr_url = substr($cr_url,strrpos($cr_url,'/')+1);
           </div>
         </li>
 
-        <div class="flex space-x-5">
-          <a target="_blank" href="<?php echo $website['facebook']?>"
+        <?php if($header_social_link == 'checked'){ ?>
+          <div class="flex space-x-5">
+            <a target="_blank" href="<?php echo $website['facebook']?>"
             class="bg-blue-600 text-white px-4 py-1 rounded shadow-sm">
             <i class="fa-brands fa-facebook-f"></i>
             <small></small>
           </a>
           <a target="_blank" href="<?php echo $website['youtube']?>"
-            class="bg-red-600 text-white px-4 py-1 rounded shadow-sm">
-            <i class="fa-brands fa-youtube"></i>
-            <small></small>
-          </a>
-        </div>
+          class="bg-red-600 text-white px-4 py-1 rounded shadow-sm">
+          <i class="fa-brands fa-youtube"></i>
+          <small></small>
+        </a>
+      </div>
+      <?php }?>
 
         <?php if($id<1){?>
         <li>

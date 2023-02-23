@@ -114,20 +114,24 @@
                     <span><?php echo $data['sell_price']?></span>
                   </div>
                   <p><?php echo $data['sell']?> Sales</p>
-                  <div>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <div style="width:70%">
+
+                  <?php if($review_product == 'checked'){ ?>
+                    <div>
                       <i class="fa-solid fa-star"></i>
                       <i class="fa-solid fa-star"></i>
                       <i class="fa-solid fa-star"></i>
                       <i class="fa-solid fa-star"></i>
                       <i class="fa-solid fa-star"></i>
+                      <div style="width:70%">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
                     </div>
-                  </div>
+                    <?php }?>
+
                 </div>
 
                 <div>

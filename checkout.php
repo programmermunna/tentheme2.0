@@ -29,7 +29,7 @@ if($id<1){
       </div>
 
     </div>
-  </header> 
+  </header>
 
   <div class="bg-gray-50 w-full py-12">
     <div class="container flex items-start flex-col lg:flex-row justify-between gap-8">

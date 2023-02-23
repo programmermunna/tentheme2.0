@@ -4,23 +4,18 @@
         $data = _fetch("website","id=1");
 
         if(isset($_POST['submit'])){
-            $title = $_POST['title'];
-            $logo = $_POST['logo'];
-            $description = $_POST['description'];
-            $keyword = $_POST['keyword'];
-            $url = $_POST['url'];
+            
             $phone = $_POST['phone'];
             $mail = $_POST['mail'];
             $address = $_POST['address'];
-            $footer_text = $_POST['footer_text'];
             $facebook = $_POST['facebook'];
             $youtube = $_POST['youtube'];
             $linkedin = $_POST['linkedin'];
-            $update = _update("website","title='$title',logo='$logo',description='$description',keyword='$keyword',url='$url',phone='$phone',mail='$mail',address='$address',footer_text='$footer_text',facebook='$facebook',youtube='$youtube',linkedin='$linkedin'","id=1");
+            $update = _update("website","phone='$phone',mail='$mail',address='$address',facebook='$facebook',youtube='$youtube',linkedin='$linkedin'","id=1");
 
             if($update){
               $msg = "Update Successfully";
-              header("location:settings.php?msg=$msg");
+              header("location:social-settings.php?msg=$msg");
             }else{
               echo $err = "Something is wrong";
             }
@@ -33,7 +28,7 @@
         <div class="w-full space-y-10 p-6 lg:p-12 bg-white border border-gray-200 rounded">
           <form action="" method="POST" class="grid grid-cols-2 gap-y-6 gap-x-12">
             <div class="col-span-2">
-              <h2 class="text-xl font-semibold text-cyan-800">Website Info</h2>
+              <h2 class="text-xl font-semibold text-cyan-800">Social Setting</h2>
             </div>
 
 

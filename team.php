@@ -54,8 +54,9 @@
               </h3>
               <span class="text-gray-500 dark:text-gray-400"><?php echo $data['qualification']?></span>
               <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400"><?php echo $data['summery']?></p>
-              <ul class="flex space-x-4 sm:mt-0">
 
+              <?php if($team_social == "checked"){ ?>
+              <ul class="flex space-x-4 sm:mt-0">
                 <li>
                   <a style="font-size: 30px;" href="tel:<?php echo $data['whatsapp']?>" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
                   <i class="fa-solid fa-phone"></i>
@@ -76,9 +77,8 @@
                   <i class="fa-brands fa-linkedin"></i>
                   </a>
                 </li>
-
-
               </ul>
+              <?php }?>
             </div>
           </div>
           <?php }?>

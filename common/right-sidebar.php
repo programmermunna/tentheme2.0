@@ -4,10 +4,20 @@
     $index = 'service';
     $index2 = 'service';
     $type = 'service';
+    if($review_service == "checked"){
+      $review_bar = "checked";
+    }else{
+      $review_bar = "unchecked";
+    }
     }else{
       $index = 'products';
       $index2 = 'products';
       $type = 'Product';
+      if($review_product == "checked"){
+        $review_bar = "checked";
+      }else{
+        $review_bar = "unchecked";
+      }
   }
 
 ?>
@@ -103,9 +113,10 @@
           </div>
           <br>
 
+          
+          <?php if($review_product == 'checked'){ ?>
           <!-- Filter by Rating -->
-          <div style="box-shadow:rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
-    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px" class="sidebar_item overflow-hidden bg-white shadow px-5">
+          <div style="box-shadow:rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,rgba(0, 0, 0, 0.06) 0px 0px 0px 1px" class="sidebar_item overflow-hidden bg-white shadow px-5">
             <button class="ds_title" data-ref="Rating">
               <span>Rating</span>
               <span>
@@ -165,9 +176,10 @@
               </div>
             </div>
           </form>
-
           </div>
           <br>
+          <?php }?>
+
 
           <!-- filter by Date Added -->
           <div style="box-shadow:rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
