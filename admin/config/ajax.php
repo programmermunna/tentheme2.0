@@ -93,6 +93,30 @@ if(isset($_POST['chat_insert_admin']) && isset($_POST['ticket_id']) && isset($_P
 exit;    
 }
 
+if(isset($_POST['f3_load'])){ 
+  
+    $type=$_POST['f3_load'];
+      $footer_3_4_5 =_get("footer_3_4_5","type='$type' AND status ='Publish'");
+      while($data = mysqli_fetch_assoc($footer_3_4_5)){
+      ?>
+        <tr class="hover:bg-gray-100 f3_load">
+          <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['title']?></td>
+          <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['url']?></td>
+          <?php 
+          if($data['status']=='Published'){ ?>
+          <td class="p-4 text-sm font-bold text-green-500 whitespace-nowrap lg:p-5"><?php echo $data['status']?></td>
+          <?php }else{ ?>
+          <td class="p-4 text-sm font-bold text-red-500 whitespace-nowrap lg:p-5"><?php echo $data['status']?></td>
+          <?php }?>
+          <td class="text-center p-4 space-x-2 whitespace-nowrap lg:p-5">
+            <a href="edit-team.php?src=footer-settings&&table=footer_3_4_5&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Edit</a>
+            <a href="delete.php?src=footer-settings&&table=footer_3_4_5&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Delete</a>
+          </td>
+        </tr>
+        <?php }?> 
+  
+<?php exit; }
+
 
 
 

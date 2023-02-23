@@ -89,9 +89,9 @@
 
           <h2 style="font-size:40px;padding:20px">Footer 3</h2>
           <div style="display:flex;justify-content:space-between;gap:20px;padding:50px 100px">              
-              <input type="text" class="input" placeholder="Enter Title">
-              <input type="text" class="input" placeholder="Enter URL">
-              <button class="btn" style="background:#2563EB;color:#fff">Add Now</button>
+              <input id="f3_title" type="text" class="input" placeholder="Enter Title">
+              <input id="f3_url" type="text" class="input" placeholder="Enter URL">
+              <button id="f3_btn" class="btn" style="background:#2563EB;color:#fff">Add Now</button>
         </div>
 
 
@@ -109,7 +109,7 @@
                     $footer_3_4_5 =_get("footer_3_4_5","type='f3' AND status ='Publish'");
                     while($data = mysqli_fetch_assoc($footer_3_4_5)){
                     ?>
-                      <tr class="hover:bg-gray-100">
+                      <tr class="hover:bg-gray-100 f3_load">
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['title']?></td>
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['url']?></td>
                         <?php 
@@ -142,6 +142,45 @@
   </main>
 
   <script>
+
+$(document).ready(function(){
+    function load(){
+        $.ajax({
+            url:"config/ajax.php",
+            type:"POST",
+            data:
+            {
+              f3_load:'f3',
+            },
+            success:function(data){
+                $(".f3_load").html(data);
+            }
+        });
+    }
+    load();
+    
+    $("#submit").on("click",function(e){
+      e.preventDefault();
+      $.ajax({
+          url:"admin/config/ajax.php",
+          type:"POST",
+          data:
+          {
+            chat_insert:1,            
+            ticket_id : <?php echo $ticket_id;?>,
+            uid:<?php echo $id;?>,
+            msg:$("#message").val(),        
+          },         
+          success:function(data){
+            load();
+            }
+          });
+      })
+
+  })
+
+
+
   $('.summernote').summernote({
         placeholder: 'Write Something About Service',
         tabsize: 2,

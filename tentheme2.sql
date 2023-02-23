@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2023 at 06:47 PM
+-- Generation Time: Feb 23, 2023 at 09:06 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tentheme`
+-- Database: `tentheme2`
 --
 
 -- --------------------------------------------------------
@@ -141,6 +141,55 @@ CREATE TABLE `deposit` (
 
 INSERT INTO `deposit` (`id`, `pid`, `method`, `pmn_address`, `tr_id`, `amount`, `status`, `notify`, `time`) VALUES
 (20, 2, 'Rocket', '014254642', 'adfsf45sd5f45a5df45', 10000, 'Success', 'Old', 1675622212);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `footer_1_2`
+--
+
+CREATE TABLE `footer_1_2` (
+  `id` int(255) NOT NULL,
+  `file_name` varchar(255) NOT NULL,
+  `facebook` varchar(255) NOT NULL,
+  `facebook_url` varchar(255) NOT NULL,
+  `youtube` varchar(255) NOT NULL,
+  `youtube_url` varchar(255) NOT NULL,
+  `textarea` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `footer_1_2`
+--
+
+INSERT INTO `footer_1_2` (`id`, `file_name`, `facebook`, `facebook_url`, `youtube`, `youtube_url`, `textarea`) VALUES
+(1, 'image.png', 'facebook', 'facebook.com', 'youtube', 'youtube.com', 'lorem500');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `footer_3_4_5`
+--
+
+CREATE TABLE `footer_3_4_5` (
+  `id` int(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `footer_3_4_5`
+--
+
+INSERT INTO `footer_3_4_5` (`id`, `title`, `url`, `type`, `status`) VALUES
+(1, 'investor', 'investor.com', 'F3', 'Publish'),
+(2, 'investor', 'investor.com', 'F3', 'Publish'),
+(6, 'investor', 'investor.com', 'f2', 'Publish'),
+(7, 'investor', 'investor.com', 'f2', 'Publish'),
+(8, 'investor', 'investor.com', 'f2', 'Publish'),
+(9, 'investor', 'investor.com', 'f2', 'Publish');
 
 -- --------------------------------------------------------
 
@@ -598,6 +647,18 @@ ALTER TABLE `deposit`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `footer_1_2`
+--
+ALTER TABLE `footer_1_2`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `footer_3_4_5`
+--
+ALTER TABLE `footer_3_4_5`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `general_setting`
 --
 ALTER TABLE `general_setting`
@@ -708,6 +769,18 @@ ALTER TABLE `comment`
 --
 ALTER TABLE `deposit`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `footer_1_2`
+--
+ALTER TABLE `footer_1_2`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `footer_3_4_5`
+--
+ALTER TABLE `footer_3_4_5`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `general_setting`
