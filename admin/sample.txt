@@ -1,0 +1,17 @@
+    // $("#submit").on("click",function(e){
+    //   e.preventDefault();
+    //   $.ajax({
+    //       url:"admin/config/ajax.php",
+    //       type:"POST",
+    //       data:
+    //       {
+    //         chat_insert:1,            
+    //         ticket_id : <?php echo $ticket_id;?>,
+    //         uid:<?php echo $id;?>,
+    //         msg:$("#message").val(),        
+    //       },         
+    //       success:function(data){
+    //         load();
+    //         }
+    //       });
+    //   })

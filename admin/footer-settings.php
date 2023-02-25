@@ -104,26 +104,8 @@
                       <th scope="col" class="text-center p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5"> Actions</th>
                     </tr>
                   </thead>
-                  <tbody class="bg-white divide-y divide-gray-200">
-                    <?php 
-                    $footer_3_4_5 =_get("footer_3_4_5","type='f3' AND status ='Publish'");
-                    while($data = mysqli_fetch_assoc($footer_3_4_5)){
-                    ?>
-                      <tr class="hover:bg-gray-100 f3_load">
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['title']?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['url']?></td>
-                        <?php 
-                        if($data['status']=='Published'){ ?>
-                        <td class="p-4 text-sm font-bold text-green-500 whitespace-nowrap lg:p-5"><?php echo $data['status']?></td>
-                       <?php }else{ ?>
-                        <td class="p-4 text-sm font-bold text-red-500 whitespace-nowrap lg:p-5"><?php echo $data['status']?></td>
-                       <?php }?>
-                        <td class="text-center p-4 space-x-2 whitespace-nowrap lg:p-5">
-                          <a href="edit-team.php?src=footer-settings&&table=footer_3_4_5&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Edit</a>
-                          <a href="delete.php?src=footer-settings&&table=footer_3_4_5&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Delete</a>
-                        </td>
-                      </tr>
-                      <?php }?>                      
+                  <tbody class="bg-white divide-y divide-gray-200 f3_load">
+                                        
                     </tbody>
                 </table>
         
@@ -144,6 +126,7 @@
   <script>
 
 $(document).ready(function(){
+
     function load(){
         $.ajax({
             url:"config/ajax.php",
@@ -158,24 +141,25 @@ $(document).ready(function(){
         });
     }
     load();
-    
-    $("#submit").on("click",function(e){
+
+    $("#f3_btn").on("click",function(e){
       e.preventDefault();
       $.ajax({
-          url:"admin/config/ajax.php",
+          url:"config/ajax.php",
           type:"POST",
           data:
           {
-            chat_insert:1,            
-            ticket_id : <?php echo $ticket_id;?>,
-            uid:<?php echo $id;?>,
-            msg:$("#message").val(),        
+            f3_ajax:"insert",         
+            f3_title:$("#f3_title").val(),
+            f3_url:$("#f3_url").val(),
           },         
           success:function(data){
             load();
             }
           });
       })
+    
+
 
   })
 

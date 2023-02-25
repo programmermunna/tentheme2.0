@@ -93,9 +93,10 @@ if(isset($_POST['chat_insert_admin']) && isset($_POST['ticket_id']) && isset($_P
 exit;    
 }
 
-if(isset($_POST['f3_load'])){ 
-  
-    $type=$_POST['f3_load'];
+
+//Footer 3 insert
+if(isset($_POST['f3_load'])){  
+    $type = $_POST['f3_load'];
       $footer_3_4_5 =_get("footer_3_4_5","type='$type' AND status ='Publish'");
       while($data = mysqli_fetch_assoc($footer_3_4_5)){
       ?>
@@ -116,6 +117,53 @@ if(isset($_POST['f3_load'])){
         <?php }?> 
   
 <?php exit; }
+
+
+
+if(isset($_POST['f3_ajax']) && isset($_POST['f3_title']) && isset($_POST['f3_url'])){
+  $f3_ajax = $_POST['f3_ajax'];
+  $f3_title = $_POST['f3_title'];
+  $f3_url = $_POST['f3_url'];
+  if($f3_ajax == "insert"){
+    $insert = _insert("footer_3_4_5","title,url,type,status","'$f3_title','$f3_url','F3','Publish'");
+    if($insert){
+      echo $msg = "Successfully Insert";
+    }else{
+      echo $msg = "Not insert. Something is wrong";
+    }
+  }  
+exit;    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
