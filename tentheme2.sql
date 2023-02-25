@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2023 at 09:06 PM
+-- Generation Time: Feb 25, 2023 at 06:36 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -155,15 +155,16 @@ CREATE TABLE `footer_1_2` (
   `facebook_url` varchar(255) NOT NULL,
   `youtube` varchar(255) NOT NULL,
   `youtube_url` varchar(255) NOT NULL,
-  `textarea` longtext NOT NULL
+  `textarea` longtext NOT NULL,
+  `copy_right` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `footer_1_2`
 --
 
-INSERT INTO `footer_1_2` (`id`, `file_name`, `facebook`, `facebook_url`, `youtube`, `youtube_url`, `textarea`) VALUES
-(1, 'image.png', 'facebook', 'facebook.com', 'youtube', 'youtube.com', 'lorem500');
+INSERT INTO `footer_1_2` (`id`, `file_name`, `facebook`, `facebook_url`, `youtube`, `youtube_url`, `textarea`, `copy_right`) VALUES
+(1, 'logo.png', 'facebook', 'facebook.com', 'youtube', 'youtube.com', '<p><span style=\"font-family: Rubik, sans-serif;\">Bangladeshi Software is the biggest Software Company In Bangladesh. We provide any Desktop &amp; Android Software. We Provide 100 Percent Customer Satisfaction</span></p>', '<span style=\"color: rgb(55, 65, 81); font-family: Rubik, sans-serif; font-size: 16px; text-align: right;\">All Rights Reserved © <b>Bangladeshi Software</b> <b>2022 SHAMIMLEM</b>.</span>');
 
 -- --------------------------------------------------------
 
@@ -184,12 +185,18 @@ CREATE TABLE `footer_3_4_5` (
 --
 
 INSERT INTO `footer_3_4_5` (`id`, `title`, `url`, `type`, `status`) VALUES
-(1, 'investor', 'investor.com', 'F3', 'Publish'),
-(2, 'investor', 'investor.com', 'F3', 'Publish'),
-(6, 'investor', 'investor.com', 'f2', 'Publish'),
-(7, 'investor', 'investor.com', 'f2', 'Publish'),
-(8, 'investor', 'investor.com', 'f2', 'Publish'),
-(9, 'investor', 'investor.com', 'f2', 'Publish');
+(34, 'DMCA', 'DMCA', 'F3', 'Publish'),
+(35, 'Contact US', 'Contact US', 'F3', 'Publish'),
+(36, 'Cookies Policy', 'Cookies Policy', 'F3', 'Publish'),
+(37, 'Privacy Policy', 'Privacy Policy', 'F3', 'Publish'),
+(38, 'Join Investor', 'Join Investor', 'F4', 'Publish'),
+(39, 'Join Reseller', 'Join Reseller', 'F4', 'Publish'),
+(40, 'shamimlem@yahoo.com', 'shamimlem@yahoo.com', 'F4', 'Publish'),
+(41, '+880 1719-182586', '+880 1719-182586', 'F4', 'Publish'),
+(42, 'Products', 'Products', 'F5', 'Publish'),
+(43, ' Services', ' Services', 'F5', 'Publish'),
+(44, 'Investor', 'Investor', 'F5', 'Publish'),
+(45, ' Reselle', ' Reselle', 'F5', 'Publish');
 
 -- --------------------------------------------------------
 
@@ -780,7 +787,7 @@ ALTER TABLE `footer_1_2`
 -- AUTO_INCREMENT for table `footer_3_4_5`
 --
 ALTER TABLE `footer_3_4_5`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `general_setting`
