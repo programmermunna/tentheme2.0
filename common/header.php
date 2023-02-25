@@ -13,6 +13,7 @@ $person = _fetch("person","id=$id");
 $website = _fetch("website","id=1");
 $limit_setting = _fetch("limit_setting","id=$id");
 $general_setting = _fetch("general_setting","id=1");
+$footer_1_2 = _fetch("footer_1_2","id=1");
 
 $header_social_link = $general_setting['header_social_link'];
 $review_product = $general_setting['review_product'];
