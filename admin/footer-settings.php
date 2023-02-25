@@ -1,7 +1,7 @@
 <?php include("common/header-sidebar.php")?>
       
-        <?php
-        $data = _fetch("website","id=1");?>
+          <?php
+          $data = _fetch("footer_1_2","id=1");?>
           <h2 style="font-size:40px;padding:20px">Footer 1</h2>
           <div style="display:flex;justify-content:space-around;padding:50px 100px">
 
@@ -12,9 +12,9 @@
                 move_uploaded_file($file_tmp,"upload/$file_name");
                 if(empty($file_name)){
                   $msg = "Please Select File";
-                  header("location:settings.php?msg=$msg");
+                  header("location:footer-settings.php?msg=$msg");
                 }else{
-                $update = _update("website","footer_img='$file_name'","id=1");
+                $update = _update("footer_1_2","file_name='$file_name'","id=1");
                 if($update){
                   $msg = "Successfully Updated";
                   header("location:footer-settings.php?msg=$msg");
@@ -24,7 +24,7 @@
                 }
               }
               }elseif(isset($_POST['remove_logo'])){
-                $update = _update("website","file_name=''","id=1");
+                $update = _update("footer_1_2","file_name=''","id=1");
                 if($update){
                   $msg = "Successfully Removed";
                   header("location:footer-settings.php?msg=$msg");
@@ -36,7 +36,7 @@
                 <div class="col-span-2 lg:col-span-1 flex flex-col gap-y-1">
                   <label for="logo_image">Logo Image</label>
                   <?php if(empty($data['file_name'])){}else{?>
-                  <img style="width:300px;height:100px;margin:10px auto;border-radius:10px;" src="upload/<?php echo $data['footer_img']?>">
+                  <img style="width:300px;height:100px;margin:10px auto;border-radius:10px;" src="upload/<?php echo $data['file_name']?>">
                   <?php }?>
                   <input style="padding-top:10px" name="file" class="input" type="file" id="logo_file">
                 </div>
@@ -50,15 +50,29 @@
                 </form>
               </div>
               <div>
-                <form action="">
-                  <div style="display:flex;gap:30px;padding-top:90px;">
+                <?php 
+                if(isset($_POST['update_f1_link'])){
+                  $facebook = $_POST['facebook'];
+                  $youtube = $_POST['youtube'];
+                  $update = _update("footer_1_2","facebook='$facebook',youtube='$youtube'","id=1");
+                  if($update){
+                    $msg = "Update Successfully";
+                    header("location:footer-settings.php?msg=$msg");
+                  }else{
+                    echo $err = "error";
+                  }
+                }
+                ?>
+                <form action="" method="POST">
+                  <div style="display:flex;gap:30px;padding-top:88px;">
                     <label for="">Facebook: </label>
-                    <input style="width:333px" class="input" type="text" placeholder="Enter Your Facebook Url">
+                    <input style="width:333px" name="facebook" class="input" type="text" placeholder="Enter Your Facebook Url" value="<?php echo $data['facebook']?>">
                   </div>
                   <div style="display:flex;gap:42px;padding-top:20px;">
                     <label for="">Youtube: </label>
-                    <input style="width:333px" class="input" type="text" placeholder="Enter Your Youtube Url">
+                    <input style="width:333px" name="youtube" class="input" type="text" placeholder="Enter Your Youtube Url" value="<?php echo $data['youtube']?>">
                   </div>
+                  <button style="margin-top:20px;" class="button" type="submit" name="update_f1_link">Update Now</button>
                 </form>
               </div>
         </div>
@@ -69,15 +83,27 @@
           <h2 style="font-size:40px;padding:20px">Footer 2</h2>
           <div style="padding:50px 100px">
               <div>
+              <?php 
+                if(isset($_POST['update_f2'])){
+                  $textarea = $_POST['textarea'];
+                  $update = _update("footer_1_2","textarea='$textarea'","id=1");
+                  if($update){
+                    $msg = "Update Successfully";
+                    header("location:footer-settings.php?msg=$msg");
+                  }else{
+                    echo $err = "error";
+                  }
+                }
+                ?>
                 <form action="" method="POST" enctype="multipart/form-data">
                 <div class="col-span-2 lg:col-span-1 flex flex-col gap-y-1">
                   <label for="logo_image">Footer Summary</label>
-                  <textarea class="summernote"></textarea>
+                  <textarea name="textarea" class="summernote"><?php echo $data['textarea']?></textarea>
                 </div>
 
                 <div class="col-span-2 flex justify-start">
                   <div class="w-fit" style="display:flex;gap:10px;padding:20px 0">
-                    <button type="submit" name="add_logo" class="button">Save</button>
+                    <button type="submit" name="update_f2" class="button">Save</button>
                   </div>
                 </div>
                 </form>
@@ -92,7 +118,7 @@
           <div style="display:flex;justify-content:space-between;gap:20px;padding:50px 100px">              
               <input id="f3_title" type="text" class="input" placeholder="Enter Title">
               <input id="f3_url" type="text" class="input" placeholder="Enter URL">
-              <button id="f3_btn" class="btn" style="background:#2563EB;color:#fff">Add Now</button>
+              <button id="f3_btn" class="button">Add Now</button>
         </div>
 
 
@@ -119,7 +145,7 @@
           <div style="display:flex;justify-content:space-between;gap:20px;padding:50px 100px">              
               <input id="f4_title" type="text" class="input" placeholder="Enter Title">
               <input id="f4_url" type="text" class="input" placeholder="Enter URL">
-              <button id="f4_btn" class="btn" style="background:#2563EB;color:#fff">Add Now</button>
+              <button id="f4_btn" class="button">Add Now</button>
         </div>
 
 
@@ -146,7 +172,7 @@
           <div style="display:flex;justify-content:space-between;gap:20px;padding:50px 100px">              
               <input id="f5_title" type="text" class="input" placeholder="Enter Title">
               <input id="f5_url" type="text" class="input" placeholder="Enter URL">
-              <button id="f5_btn" class="btn" style="background:#2563EB;color:#fff">Add Now</button>
+              <button id="f5_btn" class="button">Add Now</button>
         </div>
 
 
