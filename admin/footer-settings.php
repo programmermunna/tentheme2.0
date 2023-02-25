@@ -193,9 +193,39 @@
 <hr>
 <hr>
 
+<br>
+<br>
 
-<br>
-<br>
+          <h2 style="font-size:40px;padding:20px">Copy Right Text</h2>
+          <div style="padding:50px 100px">
+              <div>
+              <?php 
+                if(isset($_POST['copy_right_btn'])){
+                  $copy_right = $_POST['copy_right'];
+                  $update = _update("footer_1_2","copy_right='$copy_right'","id=1");
+                  if($update){
+                    $msg = "Update Successfully";
+                    header("location:footer-settings.php?msg=$msg");
+                  }else{
+                    echo $err = "error";
+                  }
+                }
+                ?>
+                <form action="" method="POST" enctype="multipart/form-data">
+                <div class="col-span-2 lg:col-span-1 flex flex-col gap-y-1">
+                  <label for="logo_image">Copy Right Text</label>
+                  <textarea name="copy_right" class="summernote"><?php echo $data['copy_right']?></textarea>
+                </div>
+
+                <div class="col-span-2 flex justify-start">
+                  <div class="w-fit" style="display:flex;gap:10px;padding:20px 0">
+                    <button type="submit" name="copy_right_btn" class="button">Save</button>
+                  </div>
+                </div>
+                </form>
+              </div>
+        </div>
+
 <br>
 <br>
 
