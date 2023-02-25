@@ -83,7 +83,8 @@
                 </form>
               </div>
         </div>
-        
+<br>
+<br>
 <hr>
 <hr>
 
@@ -108,6 +109,60 @@
                                         
                     </tbody>
                 </table>
+     
+<br>
+<br>
+<hr>
+<hr>
+
+          <h2 style="font-size:40px;padding:20px">Footer 4</h2>
+          <div style="display:flex;justify-content:space-between;gap:20px;padding:50px 100px">              
+              <input id="f4_title" type="text" class="input" placeholder="Enter Title">
+              <input id="f4_url" type="text" class="input" placeholder="Enter URL">
+              <button id="f4_btn" class="btn" style="background:#2563EB;color:#fff">Add Now</button>
+        </div>
+
+
+                <table class="min-w-full divide-y divide-gray-200 table-fixed" style="width:80%;padding:50px 100px">
+                  <thead class="bg-white">
+                    <tr>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Title</th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">URL</th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Status</th>
+                      <th scope="col" class="text-center p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5"> Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y divide-gray-200 f4_load">
+                                        
+                    </tbody>
+                </table>
+        
+<br>
+<br>
+<hr>
+<hr>
+
+          <h2 style="font-size:40px;padding:20px">Footer 5 <small>(Navigation Bar)</small></h2>
+          <div style="display:flex;justify-content:space-between;gap:20px;padding:50px 100px">              
+              <input id="f5_title" type="text" class="input" placeholder="Enter Title">
+              <input id="f5_url" type="text" class="input" placeholder="Enter URL">
+              <button id="f5_btn" class="btn" style="background:#2563EB;color:#fff">Add Now</button>
+        </div>
+
+
+                <table class="min-w-full divide-y divide-gray-200 table-fixed" style="width:80%;padding:50px 100px">
+                  <thead class="bg-white">
+                    <tr>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Title</th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">URL</th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Status</th>
+                      <th scope="col" class="text-center p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5"> Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y divide-gray-200 f5_load">
+                                        
+                    </tbody>
+                </table>
         
 <hr>
 <hr>
@@ -127,7 +182,8 @@
 
 $(document).ready(function(){
 
-    function load(){
+  //footer 4
+    function load_footer_3(){
         $.ajax({
             url:"config/ajax.php",
             type:"POST",
@@ -140,7 +196,7 @@ $(document).ready(function(){
             }
         });
     }
-    load();
+    load_footer_3();
 
     $("#f3_btn").on("click",function(e){
       e.preventDefault();
@@ -154,7 +210,75 @@ $(document).ready(function(){
             f3_url:$("#f3_url").val(),
           },         
           success:function(data){
-            load();
+            load_footer_3();
+            $("#f3_title").val().reset();
+            }
+          });
+      })
+
+
+//footer 5
+function load_footer_4(){
+        $.ajax({
+            url:"config/ajax.php",
+            type:"POST",
+            data:
+            {
+              f4_load:'f4',
+            },
+            success:function(data){
+                $(".f4_load").html(data);
+            }
+        });
+    }
+    load_footer_4();
+
+    $("#f4_btn").on("click",function(e){
+      e.preventDefault();
+      $.ajax({
+          url:"config/ajax.php",
+          type:"POST",
+          data:
+          {
+            f4_ajax:"insert",         
+            f4_title:$("#f4_title").val(),
+            f4_url:$("#f4_url").val(),
+          },         
+          success:function(data){
+            load_footer_4();
+            }
+          });
+      })
+
+//footer 5
+    function load_footer_5(){
+        $.ajax({
+            url:"config/ajax.php",
+            type:"POST",
+            data:
+            {
+              f5_load:'f5',
+            },
+            success:function(data){
+                $(".f5_load").html(data);
+            }
+        });
+    }
+    load_footer_5();
+
+    $("#f5_btn").on("click",function(e){
+      e.preventDefault();
+      $.ajax({
+          url:"config/ajax.php",
+          type:"POST",
+          data:
+          {
+            f5_ajax:"insert",         
+            f5_title:$("#f5_title").val(),
+            f5_url:$("#f5_url").val(),
+          },         
+          success:function(data){
+            load_footer_5();
             }
           });
       })
