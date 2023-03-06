@@ -268,7 +268,7 @@ $data = _fetch("post","id=$id");
             <!-- RightBar Info -->
             <div class="w-full lg:min-w-[350px] lg:w-[350px]">
               <div class="w-full sticky top-0 pt-12">                    
-                <?php include("common/post_sidebar.php")?>
+                <?php include("common/blog_sidebar.php")?>
               </div>
             </div>
 

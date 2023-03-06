@@ -8,6 +8,7 @@
                     <input name="src"
                         class="shadow w-full h-12 rounded-t px-10 focus:ring-2 focus:outline-none focus:ring-gray-200"
                         type="text" id="voice-search" placeholder="Search..." required />
+                        <input type="hidden" name="id">
                     <button type="submit"
                         class="flex absolute inset-y-0 right-1.5 text-sm items-center text-green-700 px-2 h-fit py-2 my-auto rounded">
                         Search
