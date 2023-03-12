@@ -13,8 +13,8 @@ $pending_item = mysqli_num_rows(_get("team","status='unpublished'"));
                     <div style="display:flex">
                       <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="all-team.php"> <i class="fa-solid fa-rotate-right"></i> Refresh</a>
                     </div>
-                    <div>
-                      
+                    <div>                      
+                      <form action="" method="GET">
                         <div style="text-align: right;margin: 5px;padding-top: 10px;">
                             <input name="src" type="search" id="srcvalue" placeholder="Search Here..." style="padding: 8px;border: 2px solid #ddd;border-radius:5px;">
                             <button type="submit" name="search" style="padding: 9px 15px;margin-right: 12px;background: #0e33f78a;color:#fff;box-sizing: border-box;border-radius: 2px;">Search</button>
@@ -36,7 +36,6 @@ $pending_item = mysqli_num_rows(_get("team","status='unpublished'"));
                   }
                   ?>
                   <form action="" method="POST">
-                  <form action="" method="GET">
                       <div class="top_link">
                       <a href="all-team.php">All (<?php echo $all_item?>)</a> |
                       <a href="all-team.php?status=Published">Published (<?php echo $published_item?>)</a> |
