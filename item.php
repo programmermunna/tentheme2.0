@@ -9,6 +9,7 @@ if(isset($_GET['product_id'])){
   if(isset($_GET['cart'])){
     if($id<1){
       $err = "Please Login or SignIn First";
+      header("location:item.php?product_id=$product_id&&err=$err");
     }else{
       $cart_id = $_GET['cart'];
       $check = _fetch("cart","pid=$id AND type='product' AND cart_id=$cart_id AND status=0");
@@ -399,7 +400,7 @@ if(isset($_GET['product_id'])){
               <?php echo $data['mini_content']?>
               </ul>
 
-              <a href="?id=<?php echo $data['id']?>&&cart=<?php echo $data['id']?>"
+              <a href="?product_id=<?php echo $data['id']?>&&cart=<?php echo $data['id']?>"
                 class="w-full h-11 flex items-center justify-center rounded focus:ring-2 ring-green-600 ring-offset-2 bg-green-600 text-white gap-x-2">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <span>Buy Now</span>

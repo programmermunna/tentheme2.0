@@ -7,8 +7,11 @@
   if(isset($_POST['service_id'])){
     $service_id = $_POST['service_id'];
     $service = _fetch("service","id=$service_id");
-  }  
+  }
 
+  if($id<1){
+    header("location:service.php?service_id=$service_id&&err=Please Login First");
+  }
 ?>
 
     <!-- Sub Header -->

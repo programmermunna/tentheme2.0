@@ -9,7 +9,6 @@ if($id<1){
   exit;
 }
 
-
 if(isset($_GET['cart'])){
   $cart_id = $_GET['cart'];  
     if($cart_id == "All"){

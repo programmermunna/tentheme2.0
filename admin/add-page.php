@@ -11,13 +11,18 @@ if(isset($_POST['submit'])){
     $pg_name = strtolower($pg_name);
     $pg_name = str_replace(" ","-","$pg_name");
 
-    $insert = _insert("pages","pg_name,title,content,status","'$pg_name','$pg_heading','$content','$status'");
-    if($insert){
-      $msg = "Successfully Inserted";
-      header("Location:add-page.php?msg=$msg");
+    $check = _get("pages","pg_name='$pg_name'");
+    if($check){
+        header("location:add-page.php?err=Already exist this page");
     }else{
-      $err = "Something is error!";
-      header("Location:add-page.php?err=$err");
+      $insert = _insert("pages","pg_name,title,content,status","'$pg_name','$pg_heading','$content','$status'");
+      if($insert){
+        $msg = "Successfully Inserted";
+        header("Location:add-page.php?msg=$msg");
+      }else{
+        $err = "Something is error!";
+        header("Location:add-page.php?err=$err");
+      }
     }
 
 }

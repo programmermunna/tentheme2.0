@@ -1,14 +1,25 @@
 <!-- Header area -->
 <?php include("common/header.php");?>
 <!-- Header area -->
-<?php $pages = _fetch("pages","pg_name='privacy-policy'");?>
+<?php 
 
+if(isset($_GET['page'])){
+  $pg_name = $_GET['page'];
+  $pages = _fetch("pages","pg_name='$pg_name'");
+  if(!$pages){
+    header("location:index.php");
+  }
+}
+
+
+
+?>
     <!-- Sub Header -->
     <div class="container space-y-6 pt-6 pb-12 lg:py-24">
 
       <!-- Page name Title -->
       <h3 class="text-4xl font-medium tracking-wide">
-        Privacy Policy
+        <?php echo $pg_name;?>
       </h3>
 
       <!-- Page Tree Links -->
@@ -22,7 +33,7 @@
         <small class="text-xs"> <i class="fa-solid fa-chevron-right"></i></small>
 
         <a style="background-image: conic-gradient(from 1turn, #0e9479, #16a085)"
-          class="text-white px-4 py-1.5 rounded shadow-sm" href="refund-policy.php"> Privacy policy
+          class="text-white px-4 py-1.5 rounded shadow-sm" href="refund-policy.php"> <?php echo $pg_name;?>
         </a>
 
       </div>

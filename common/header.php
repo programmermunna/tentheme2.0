@@ -106,26 +106,12 @@ $cr_url = substr($cr_url,strrpos($cr_url,'/')+1);
           <div
             class="transition-all transform origin-top scale-y-0 py-2 absolute z-50 top-[100%] inset-x-0 mx-auto w-56 space-y-1">
             <ul class="bg-white p-3 rounded shadow-xl border">
-              <!-- <li><a href="about.php"
-                  class="custom_li_hover hover:text-white rounded shadow-sm px-3 py-2 block w-full">About
-                  US</a></li>
-              <li><a href="refund-policy.php"
-                  class="custom_li_hover hover:text-white rounded shadow-sm px-3 py-2 block w-full">Refund
-                  Policy</a></li>
-              <li><a href="privacy-policy.php"
-                  class="custom_li_hover hover:text-white rounded shadow-sm px-3 py-2 block w-full">Privacy
-                  Policy</a></li>
-              <li><a href="terms-and-conditions.php"
-                  class="custom_li_hover hover:text-white rounded shadow-sm px-3 py-2 block w-full">Terms
-                  and Conditions</a></li> -->
-
-
                   <?php 
                   $pages = _get("pages","status='Published'");
                   while($page = mysqli_fetch_assoc($pages)){
                     $pg_name = $page['pg_name'];
                   ?>
-                  <li><a href="<?php echo $pg_name;?>.php"
+                  <li><a href="page.php?page=<?php echo $pg_name;?>"
                   class="custom_li_hover hover:text-white rounded shadow-sm px-3 py-2 block w-full">
                   <?php 
                   $pg_name = str_replace("-"," ","$pg_name");echo ucwords($pg_name);
@@ -136,6 +122,10 @@ $cr_url = substr($cr_url,strrpos($cr_url,'/')+1);
 
             </ul>
           </div>
+        </li>
+        
+        <li>
+          <a class="flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white" href="about.php">About Us</a>
         </li>
         
         <li>
