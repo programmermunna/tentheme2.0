@@ -11,7 +11,8 @@ $pending_item = mysqli_num_rows(_get("pages","status='unpublished'"));
                 <div class="overflow-auto bg-white">
                   <div style="display:flex;justify-content:space-between">
                     <div style="display:flex">
-                      <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="pages.php"> <i class="fa-solid fa-rotate-right"></i> Refresh</a>
+                      <a style="width:200px;margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="pages.php"> <i class="fa-solid fa-rotate-right"></i> Refresh</a>
+                      <a style="margin:15px;display:block;text-align:center;padding-top:12px;background:#0e33f78a;color:#ffff" class="input" href="add-page.php">Add Page</a>
                     </div>
                     <div>
                   <form action="" method="GET">                      
@@ -85,7 +86,12 @@ $pending_item = mysqli_num_rows(_get("pages","status='unpublished'"));
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5">
                           <input name="check_list[]" class="checkbox" type="checkbox" value="<?php echo $data['id']?>">
                         </td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['pg_name']?></td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5">
+                            <?php 
+                            $pg_name = $data['pg_name'];
+                            $pg_name = str_replace("-"," ","$pg_name");echo ucwords($pg_name);
+                            ?>
+                        </td>
                         <?php 
                         if($data['status']=='Published'){ ?>
                         <td class="p-4 text-sm font-bold text-green-500 whitespace-nowrap lg:p-5"><?php echo $data['status']?></td>

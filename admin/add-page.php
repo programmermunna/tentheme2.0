@@ -2,11 +2,6 @@
 
 <?php 
 
-if(isset($_GET['pg_id'])){
- $pg_id = $_GET['pg_id'];
-}
-$pages = _fetch("pages","id=$pg_id");
-
 if(isset($_POST['submit'])){
     $pg_name = $_POST['pg_name'];
     $pg_heading = $_POST['pg_heading'];
@@ -16,13 +11,13 @@ if(isset($_POST['submit'])){
     $pg_name = strtolower($pg_name);
     $pg_name = str_replace(" ","-","$pg_name");
 
-    $update = _update("pages","pg_name='$pg_name',title='$pg_heading',content='$content',status='$status'","id='$pg_id'");
-    if($update){
-      $msg = "Successfully Updated";
-      header("Location:pages.php?msg=$msg");
+    $insert = _insert("pages","pg_name,title,content,status","'$pg_name','$pg_heading','$content','$status'");
+    if($insert){
+      $msg = "Successfully Inserted";
+      header("Location:add-page.php?msg=$msg");
     }else{
       $err = "Something is error!";
-      header("Location:pages.php?err=$err");
+      header("Location:add-page.php?err=$err");
     }
 
 }
@@ -37,15 +32,12 @@ if(isset($_POST['submit'])){
 
           <div class="col-span-2 lg:col-span-1 flex flex-col gap-y-1">
             <label for="pg_name">Page Name</label>
-            <input name="pg_name" class="input" type="text" id="pg_name" placeholder="Enter Page Name" required value="<?php            
-                $pg_name = $pages['pg_name'];
-                $pg_name = str_replace("-"," ","$pg_name");echo ucwords($pg_name);
-              ?>">
+            <input name="pg_name" class="input" type="text" id="pg_name" placeholder="Enter Page Name" required>
           </div>
 
           <div class="col-span-2 lg:col-span-1 flex flex-col gap-y-1">
             <label for="pg_heading">Heading</label>
-            <input name="pg_heading" class="input" type="text" id="pg_heading" placeholder="Enter Page Heading" required value="<?php echo $pages['title']?>">
+            <input name="pg_heading" class="input" type="text" id="pg_heading" placeholder="Enter Page Heading" required>
           </div>
 
         </div>
@@ -54,20 +46,15 @@ if(isset($_POST['submit'])){
           <div style="padding-bottom:33px">
             <label for="content">Description</label>
             <textarea name="content" class="input summernote" type="text" id="summernote" placeholder="Description"
-              required><?php echo $pages['content']?></textarea>
+              required></textarea>
           </div>
 
 
           <div>
             <label for="status">Status</label>
             <select name="status" class="input">
-              <?php if($pages['status']== 'Published'){ ?>
                 <option value="Unpublished">Unpublished</option>
                 <option selected value="Published">Published</option>
-               <?php }else{ ?>
-                <option selected value="Unpublished">Unpublished</option>
-                <option value="Published">Published</option>
-                <?php } ?>
             </select>
           </div>
 
