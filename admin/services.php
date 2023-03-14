@@ -11,7 +11,8 @@ $pending_item = mysqli_num_rows(_get("service","status='Pending'"));
                 <div class="overflow-auto bg-white">
                   <div style="display:flex;justify-content:space-between">
                     <div style="display:flex">
-                      <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="services.php"><i class="fa-solid fa-rotate-right"></i> Refresh</a>
+                      <a style="width:200px;margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="services.php"><i class="fa-solid fa-rotate-right"></i> Refresh</a>
+                      <a style="margin:15px;display:block;text-align:center;padding-top:12px;background:#0e33f78a;color:#ffff" class="input" href="add-service.php">Add Service</a>
                     </div>
 
                     <div>

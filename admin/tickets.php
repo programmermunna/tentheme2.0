@@ -92,7 +92,6 @@ $solved_item = mysqli_num_rows(_get("tickets","status='Solved'"));
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Name</th>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Phone</th>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Subject</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Service</th>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Date</th>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Status</th>
                       <th scope="col" class="text-center p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5"> Actions</th>
@@ -147,10 +146,7 @@ $solved_item = mysqli_num_rows(_get("tickets","status='Solved'"));
                         <td><img style="margin:0 auto;width:100;height:50px;object-fit:cover" src="upload/<?php echo $person_info['file_name']?>"></td>
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $person_info['name']?></td>
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $person_info['phone']?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php sort_str($data['subject'])?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5">
-                          <a target="_blank" href="../service.php?service_id=<?php echo $service['id']?>"><?php sort_str($service['title'])?></a>
-                        </td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php sort_str($data['subject'])?></td>                        
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php $time = $data['time'];echo date("d/M/y",$time)?></td>
                         <?php if($data['status']=='Pending'){?>
                         <td class="p-4 text-sm font-normal text-red-500 whitespace-nowrap lg:p-5"><?php echo $data['status']?></td>

@@ -11,7 +11,7 @@ if(isset($_POST['submit'])){
     $pg_name = strtolower($pg_name);
     $pg_name = str_replace(" ","-","$pg_name");
 
-    $check = _get("pages","pg_name='$pg_name'");
+    $check = _fetch("pages","pg_name='$pg_name'");
     if($check){
         header("location:add-page.php?err=Already exist this page");
     }else{
@@ -32,7 +32,7 @@ if(isset($_POST['submit'])){
         <form action="" method="POST" enctype="multipart/form-data">
         <div class="grid grid-cols-2 gap-y-8 gap-x-12">
           <div class="col-span-2">
-            <h2 class="text-xl font-semibold text-cyan-800">Edit Page</h2>
+            <h2 class="text-xl font-semibold text-cyan-800">Add Page</h2>
           </div>
 
           <div class="col-span-2 lg:col-span-1 flex flex-col gap-y-1">

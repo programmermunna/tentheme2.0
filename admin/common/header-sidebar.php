@@ -388,6 +388,7 @@
           <span class="text-xs transition-all"><i class="fa-solid fa-chevron-right"></i></span>
         </a>
         <ul class="ds_ul transition-all md:hidden" data-ref="SETTINGS">
+
           <li>
             <a href="./settings.php">
               <h4> <i class="fa-solid fa-cog"></i> </h4>
@@ -410,30 +411,19 @@
           </li>
 
           <li>
-            <a href="./deposit-bank.php">
-              <h4> <i class="fa-solid fa-cog"></i> </h4>
-              <span>Deposit Bank</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="./withdrawl-bank.php">
-              <h4> <i class="fa-solid fa-cog"></i> </h4>
-              <span>Withdrawl Bank</span>
-            </a>
-          </li>
-          <li>
             <a href="./mailing-setting.php">
               <h4> <i class="fa-solid fa-cog"></i> </h4>
               <span>Mailing Setting</span>
             </a>
           </li>
+
           <li>
             <a href="./adsense.php">
               <h4> <i class="fa-solid fa-cog"></i> </h4>
               <span>Adsense</span>
             </a>
           </li>
+          
         </ul>
       </div>
 
