@@ -43,121 +43,61 @@
 
           <div class="px-5 py-4 w-full text-blue-600 text-2xl font-medium tracking-wide border-b">Reseller</div>
           <div class="p-6 flex w-full items-center justify-start flex-col gap-y-5">
+            
+
+            <?php 
+            if($person['reseller']=='Submitted'){ ?>
+              <h2 style="font-size: 30px;font-weight:bolder">You Have Submitted Reseller Account</h2>
+              <p style="font-size: 20px;line-height:40px">
+              Dear <?php echo $person['name']?>, <br>
+
+              We would like to extend an invitation to you to join our reseller program. Our company offers a wide range of high-quality products and services that we believe would be of interest to your constituents.
+              <br>
+              As a reseller, you would have the opportunity to earn a commission on the sales of our products and services. This is a great opportunity to generate additional income for your office while providing valuable products and services to your constituents.
+              <br>
+              We pride ourselves on our excellent customer service and our commitment to quality. We believe that by partnering with us, you can provide your constituents with access to the best products and services available.
+              <br>
+              If you are interested in learning more about our reseller program, please do not hesitate to contact us. We look forward to the opportunity to work with you and your office.
+              <br>
+              Sincerely,
+              <br>
+              Bangladeshi Software Company
+              </p>
+           <?php }else{ ?>
             <h2 class="text-2xl font-medium  text-left w-full tracking-wide">Do you want to Earning with US ? </h2>
-            <button id="reseller_btn"
-              class="mr-auto bg-blue-600 text-white px-6 py-2 rounded focus:ring-2 focus:ring-offset-2 ring-blue-600 shadow">Apply
-              Now</button>
+            <?php 
+            if(isset($_POST['submit'])){
+                $checkbox = $_POST['checkbox'];
+                if(empty($checkbox)){
+                  header("location:reseller.php?err=Please Fill-up Checkbox");
+                }else{
+                  $update = _update("person","reseller='Submitted'","id=$id");
+                  if($update){
+                    header("location:reseller.php?msg=Successfully Submitted. Please Wait for Aprove");
+                  }
+                }
+            }
+            ?>
+            <form action="" method="POST">
+            <div class="reseller_note">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione atque similique ipsam earum numquam alias explicabo ut vel. Atque voluptatum omnis ut ex magnam odit enim esse iste incidunt blanditiis autem molestiae, harum minus adipisci accusantium facilis animi necessitatibus. Eligendi magnam, quasi tempore consequuntur nostrum nobis voluptatem totam quidem assumenda perspiciatis eveniet aspernatur a consectetur eum incidunt facilis fugiat adipisci quis quas impedit voluptates, rem animi recusandae natus. Est voluptatem mollitia laborum obcaecati laboriosam ipsum doloribus hic libero labore recusandae provident nihil nisi dolorum sunt eius quas commodi, amet quo sed ipsa sint distinctio. Hic magni dolorem modi aliquam quasi quos laborum nulla sit numquam? Exercitationem corporis laboriosam iusto eveniet molestiae delectus debitis esse harum nesciunt, incidunt cupiditate distinctio rerum tempora, beatae animi accusantium aut nobis? Aliquam, assumenda. Fugit, nulla nam, labore quia corrupti explicabo consectetur incidunt voluptates dolor, dolores dolorem? Eius cumque tempora molestiae harum esse ipsam veniam labore natus minus placeat! Soluta, ipsum alias, suscipit voluptate rerum quisquam placeat mollitia eum labore fugit quam corporis unde voluptas quibusdam illum, incidunt sapiente? Laborum nihil reiciendis porro, voluptate est accusantium aut numquam animi ipsa perferendis debitis error sed reprehenderit modi magnam distinctio eos possimus iure libero eum. Culpa ex earum impedit inventore maxime reprehenderit odit aperiam eveniet, error quos quia cumque officiis minus soluta illo? Qui, perspiciatis inventore, sunt laudantium excepturi dolore officia molestias beatae expedita deserunt, eum neque eos vitae autem officiis tempora veritatis accusamus itaque reprehenderit ab tenetur aliquid omnis minima illum. Itaque quam optio unde laudantium officia, facere, blanditiis illo neque, consequuntur maiores fugiat molestias quae quos dolore iure distinctio aliquid sed dolores voluptate autem nemo voluptatum eligendi? Veniam sint nostrum quia quidem perferendis ipsum illum veritatis, atque deserunt, in error quam exercitationem temporibus quae. Odit cumque labore vitae aliquid natus ipsa quidem impedit mollitia esse earum eveniet aut libero eligendi velit itaque a totam consequuntur, explicabo maxime, dolorem facilis sit! Eius nemo consequuntur unde sapiente maiores libero. Illo, sint ea suscipit esse hic cum quaerat vero ipsa doloribus praesentium quisquam! Veniam quod magni aliquam omnis recusandae facilis, quae dicta voluptatum, voluptas harum soluta necessitatibus, nobis eligendi. Blanditiis, est et temporibus non magni eos praesentium ex eum? Dolorem et ipsa provident quae illum, at beatae laborum velit. Omnis consequatur itaque ea laborum corrupti fugiat quaerat, velit, labore autem facere at nam veritatis. Odio consequuntur repellat tempora. Autem ducimus voluptas quia, soluta eum, fugiat fugit cum animi corporis ex deleniti consectetur. Cupiditate, animi! Ullam deleniti enim consequuntur rem eveniet magni suscipit minima odio temporibus quaerat debitis necessitatibus expedita mollitia ad exercitationem reiciendis, non ea fuga vero praesentium repellendus cum aliquam. Aliquid ea, consectetur laborum nostrum nisi nulla ex, at illum maxime rem, totam quis! Officia praesentium quasi exercitationem tempore facere, ea voluptatem, magnam assumenda totam aut laboriosam eum deleniti quaerat explicabo incidunt sunt? Quibusdam maiores commodi, libero corrupti porro eligendi vitae explicabo dolore perspiciatis sunt nobis assumenda voluptatibus aperiam fugit harum. Nam ipsum velit omnis debitis unde corrupti esse pariatur possimus ducimus officia ut nemo, vitae perferendis animi.</div>
 
-            <div class="relative w-full">
-              <input id="affiliate_link_input" type="text" class="w-full h-[44p] p-2 pr-8 rounded ring-2"
-                value="https://www.domain.com/r-32323">
-              <button id="copy_affiliate_link_btn" class="absolute inset-y-0 my-auto right-3 text-cyan-800"><i
-                  class="fa-solid fa-copy"></i></button>
-            </div>
+            <input type="checkbox" name="checkbox" class="checkbox">            
+            <span style="font-size:20px;font-weight:700">Are Your Agree With This Terms? </span>
+            <br>
+            <button id="reseller_btn" name="submit" type="submit"  class="mr-auto bg-blue-600 text-white px-6 py-2 rounded focus:ring-2 focus:ring-offset-2 ring-blue-600 shadow">Apply Now</button>
+            </form>
+
+
+            <?php  }?>
+
+
           </div>
-
         </div>
-
       </div>
     </div>
   </main>
 
 
-  <!-- Footer -->
-  <footer class="bg-white pt-[74px]">
-    <div class="container grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-12">
-
-      <div class="space-y-6">
-        <img class="w-36" src="assets/images/logo.png" alt="">
-        <div class="flex space-x-5">
-          <a href="https://www.facebook.com/bangladeshisoftware"
-            class="bg-blue-600 text-white px-4 py-1 rounded shadow-sm">
-            <i class="fa-brands fa-facebook"></i>
-            <small>Facebook</small>
-          </a>
-          <a href="https://www.facebook.com/bangladeshisoftware"
-            class="bg-red-600 text-white px-4 py-1 rounded shadow-sm">
-            <i class="fa-brands fa-youtube"></i>
-            <small>Youtube</small>
-          </a>
-        </div>
-      </div>
-
-      <div>
-        <p>Bangladeshi Software is the biggest Software Company In Bangladesh. We provide any Desktop & Android
-          Software.
-          We Provide 100 Percent Customer Satisfaction Copyright © by SHAMIMLEM.</p>
-      </div>
-
-      <div class="2xl:pl-20">
-        <ul class="w-fit 2xl:mx-auto space-y-4">
-          <li class="space-x-2 text-sm font-medium hover:text-gray-600">
-            <small class="text-xs"><i class="fa-solid fa-chevron-right"></i></small>
-            <a href="dmca.php">DMCA</a>
-          </li>
-
-          <li class="space-x-2 text-sm font-medium hover:text-gray-600">
-            <small class="text-xs"><i class="fa-solid fa-chevron-right"></i></small>
-            <a href="contact.php">Contact US</a>
-          </li>
-          <li class="space-x-2 text-sm font-medium hover:text-gray-600">
-            <small class="text-xs"><i class="fa-solid fa-chevron-right"></i></small>
-            <a href="cookies-policy.php">Cookies Policy</a>
-          </li>
-          <li class="space-x-2 text-sm font-medium hover:text-gray-600">
-            <small class="text-xs"><i class="fa-solid fa-chevron-right"></i></small>
-            <a href="privacy-policy.php">Privacy Policy</a>
-          </li>
-
-        </ul>
-      </div>
-
-      <div class="2xl:pl-20">
-        <ul class="w-fit 2xl:mx-auto space-y-4">
-          <li class="space-x-2 text-sm font-medium hover:text-gray-600">
-            <small class="text-xs"><i class="fa-solid fa-chevron-right"></i></small>
-            <a href="investor.php">Join Investor</a>
-          </li>
-
-
-          <li class="space-x-2 text-sm font-medium hover:text-gray-600">
-            <small class="text-xs"><i class="fa-solid fa-chevron-right"></i></small>
-            <a href="reseller.php">Join Reseller</a>
-          </li>
-
-          <li class="space-x-2 text-sm font-medium hover:text-gray-600">
-            <small class="text-xs"><i class="fa-solid fa-chevron-right"></i></small>
-            <a href="mailto:shamimlem@yahoo.com">shamimlem@yahoo.com</a>
-          </li>
-
-          <li class="space-x-2 text-sm font-medium hover:text-gray-600">
-            <small class="text-xs"><i class="fa-solid fa-chevron-right"></i></small>
-            <a href="tel:+08801719182586">+08801719182586</a>
-          </li>
-
-        </ul>
-      </div>
-    </div>
-
-
-    <div class="container flex flex-col xl:flex-row w-full justify-between items-center gap-y-4 xl:gap-y-0 py-12">
-      <ul class="flex items-center justify-start w-full xl:w-[400px] gap-x-4 flex-wrap">
-        <li> <a href="index.php" class="hover:text-blue-600 hover:underline">Products</a> </li>
-        <li> <a href="services.php" class="hover:text-blue-600 hover:underline">Services</a> </li>
-        <li> <a href="investor.php" class="hover:text-blue-600 hover:underline">Investor</a> </li>
-        <li> <a href="reseller.php" class="hover:text-blue-600 hover:underline">Reseller</a> </li>
-      </ul>
-
-      <p class="w-full xl:text-right">
-        <span class="text-gray-700 text-base"> All Rights Reserved © Bangladeshi Software 2022 <span>SHAMIMLEM.</span>
-      </p>
-    </div>
-
-  </footer>
-  <!-- Footer -->
-
-
-  <script src="assets/js/app.js"></script>
-</body>
-
-</html>
+  <!-- Header area -->
+  <?php include("common/footer.php");?>
+<!-- Header area -->
