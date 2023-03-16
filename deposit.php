@@ -65,13 +65,11 @@
             <select id="method" name="method" class="w-full h-11 flex items-center rounded bg-white outline-none ring-2 ring-gray-200 disabled:bg-gray-200 disabled:cursor-not-allowed focus:ring-blue-600 text-gray-800 px-4">
               <Option value="" style="display:none;">Select</Option>
               <?php
-              $payment = _getAll("payment");
+              $payment = _get("payment","status='Enable'");
               while ($data = mysqli_fetch_assoc($payment)) { ?>
                 <Option value="<?php echo $data['id']; ?>"><?php echo $data['pmn_method']; ?></Option>
               <?php } ?>
             </select>
-
-
 
             <div style="display: flex;">
               <div id="mtd_number" class="payment_method">

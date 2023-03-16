@@ -60,7 +60,7 @@ $pending_item = mysqli_num_rows(_get("payment","status='Disabled'"));
                     <?php 
                     if(isset($_GET['src'])){
                       $src = trim($_GET['src']);
-                      $payment_method = _get("payment","pmn_method='$src'");
+                      $payment_method = _get("payment","pmn_method LIKE '%$src%'");
                     }elseif(isset($_GET['status'])){
                       $status = $_GET['status'];
                       $payment_method =_get("payment"," status='$status' ORDER BY id ASC");

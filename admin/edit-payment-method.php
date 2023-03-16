@@ -12,9 +12,6 @@ if(isset($_POST['submit'])){
     $method_name = $_POST['method_name'];
     $description = $_POST['description'];
     $status = $_POST['status'];
-
-    
-      $insert = _insert("payment","pmn_method,description,status","'$method_name','$description','$status'");
       $insert = _update("payment","pmn_method='$method_name',description='$description',status='$status'","id=$payment_id");
       if($insert){
         $msg = "Successfully Inserted";
