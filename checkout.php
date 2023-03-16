@@ -2,6 +2,11 @@
 <?php include("common/header.php");?>
 <!-- Header area -->
 <?php 
+
+if($person['reseller'] = 'Accepted'){
+  $reseller_discount  = $reseller_docs['discount'];
+}
+
 if($id<1){
   $err = "Please Login First";
   header("location:index.php?err=$err");
@@ -102,7 +107,8 @@ if($id<1){
 
           <div class="text-2xl font-semibold text-gray-700 items-center justify-between flex pt-5 border-t">
             <span>Total:</span>
-            <span>BDT <?php echo $total_price;?></span>
+            <span>BDT <del style="color:red;opacity:.5"><?php echo $total_price;?></del> <?php echo $total_price = $total_price - ($total_price*$reseller_discount)/100;?></span>
+            <!-- <span>BDT <?php echo $total_price -=1000;?></span> -->
           </div>
 
         </div>

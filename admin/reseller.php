@@ -1,5 +1,16 @@
 <?php include("common/header-sidebar.php");?>
 <?php 
+
+if(isset($_GET['action'])){
+  $action = $_GET['action'];
+  $id = $_GET['id'];
+    $update = _update("person","reseller='$action'","id=$id");
+    if($update){
+      header("location:reseller.php?msg=$action Successfully");
+    }
+}
+
+
   $notify_check = mysqli_num_rows(_get("person","notify='New'"));
   if($notify_check>0){
     $update_notify = _update("person","notify='Old'","notify='New'");
@@ -20,7 +31,7 @@ $rejected_resseler = mysqli_num_rows(_get("person","reseller = 'Rejected'"));
                 <div class="overflow-auto bg-white">
                   <div style="display:flex;justify-content:space-between">
                     <div style="display:flex">
-                      <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="users.php">Refresh <i  class="fa-solid fa-rotate-right"></i></a>
+                      <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="reseller.php">Refresh <i  class="fa-solid fa-rotate-right"></i></a>
                     </div>
 
                     <div>
@@ -40,7 +51,6 @@ $rejected_resseler = mysqli_num_rows(_get("person","reseller = 'Rejected'"));
                     if(isset($_POST['check_list'])){
                       $check_list = $_POST['check_list'];
                       for($i=0;$i<count($check_list);$i++){
-                        // $delete = _delete("person","id=$check_list[$i]");
                         $update = _update("person","reseller='Rejected'","id=$check_list[$i]");
                       }
                       $msg = "Rejected Successfully";
@@ -69,7 +79,7 @@ $rejected_resseler = mysqli_num_rows(_get("person","reseller = 'Rejected'"));
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Email</th>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Address</th>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Balance</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Role</th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Status</th>
                       <th scope="col" class="text-center p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5"> Actions</th>
 
                     </tr>
@@ -78,7 +88,7 @@ $rejected_resseler = mysqli_num_rows(_get("person","reseller = 'Rejected'"));
                     <?php
                     if(isset($_GET['src'])){
                       $src = trim($_GET['src']);
-                      $person = _get("person","role !='Admin' AND (name='$src' OR phone='$src' OR email='$src' OR role='$src' OR address LIKE '%$src%')");                    
+                      $person = _get("person","reseller !='' AND (name='$src' OR phone='$src' OR email='$src' OR role='$src' OR address LIKE '%$src%')");                    
                     }elseif(isset($_GET['reseller'])){
                       $reseller = trim($_GET['reseller']);
                       $person = _get("person","reseller='$reseller'");                    
@@ -110,16 +120,12 @@ $rejected_resseler = mysqli_num_rows(_get("person","reseller = 'Rejected'"));
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['phone']?></td>
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['email']?></td>
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['address']?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5">৳ <?php echo $data['balance']?></td>
-                        <?php if($data['role']=='User'){?>
-                        <td class="p-4 text-sm font-normal text-red-500 whitespace-nowrap lg:p-5"><?php echo $data['role']?></td>
-                        <?php }else{?>
-                          <td class="p-4 text-sm font-normal text-green-500 whitespace-nowrap lg:p-5"><?php echo $data['role']?></td>
-                        <?php }?>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5">৳ <?php echo $data['balance']?></td>                        
+                        <td class="p-4 text-sm font-bold text-green-500 whitespace-nowrap lg:p-5"><?php echo $data['reseller']?></td>
                         <td class="text-center p-4 space-x-2 whitespace-nowrap lg:p-5">
-                          <a id="add_bank" href="edit-person.php?src=users&&table=person&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Edit</a>
-                          <a href="delete.php?src=users&&table=person&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Delete</a>
-                          <a target="_blank" href="../login.php?email=<?php echo $data['email']?>&&pass=<?php echo $data['password']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Login</a>
+                          <a id="add_bank" href="reseller.php?action=Accepted&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Accept</a>
+                          <a href="reseller.php?action=Rejected&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Reject</a>
+                          <a id="add_bank" href="reseller.php?action=&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Delete</a>
                         </td>
                       </tr>
                       <?php }?>

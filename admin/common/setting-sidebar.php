@@ -8,12 +8,6 @@
               <span>General Setting</span>
             </a>
 
-            <a href="./payment-gateway.php"
-              class="p-4 gap-x-3 flex items-center border-b border-gray-200 hover:bg-white cursor-pointer text-base font-medium text-cyan-800">
-              <span class="text-purple-600"><i class="fa-brands fa-amazon-pay"></i></span>
-              <span>Payment Gateway</span>
-            </a>
-
             <a href="./limit-setting.php"
               class="p-4 gap-x-3 flex items-center border-b border-gray-200 hover:bg-white cursor-pointer text-base font-medium text-cyan-800">
               <span class="text-red-600"><i class="fa-solid fa-chart-line"></i></span>
