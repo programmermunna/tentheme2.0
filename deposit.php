@@ -67,89 +67,39 @@
               <?php
               $payment = _getAll("payment");
               while ($data = mysqli_fetch_assoc($payment)) { ?>
-                <Option value="<?php echo $data['pmn_info']; ?>"><?php echo $data['pmn_method']; ?></Option>
+                <Option value="<?php echo $data['id']; ?>"><?php echo $data['pmn_method']; ?></Option>
               <?php } ?>
             </select>
 
 
 
-
-
-
-
-
-            <!-- <div style="background: red;" class="text-gray-200 p-5 rounded shadow">
-              <ul class="list-decimal px-5 space-y-3">
-                <li class="border-b pb-3 border-b-[#55555555] text-xs md:text-sm"><b class="text-yellow-500 text-lg"> *247# </b> ডায়াল করে আপনার Bkash মোবাইল মেনুতে যান অথবা Bkash অ্যাপে যান।</li>
-                <li class="border-b pb-3 border-b-[#55555555] text-xs md:text-sm">"Send Money" -এ ক্লিক করুন।</li>
-                <li class="border-b pb-3 border-b-[#55555555] text-xs md:text-sm">
-                  <div class="flex flex-wrap items-center gap-x-1"><span>প্রাপক নম্বর হিসেবে এই নম্বরটি লিখুনঃ</span><b>01870844688</b><b class="text-yellow-500 text-lg">01870844688</b><button type="button" class="bg-black px-3 py-1 text-blue-100 text-xs rounded focus:ring-2 bg-opacity-50"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="copy" class="svg-inline--fa fa-copy " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                        <path fill="currentColor" d="M224 0c-35.3 0-64 28.7-64 64V288c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H224zM64 160c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H288c35.3 0 64-28.7 64-64V384H288v64H64V224h64V160H64z"></path>
-                      </svg><span class="ml-1">Copy</span></button></div>
-                </li>
-                <li class="border-b pb-3 border-b-[#55555555] text-xs md:text-sm">টাকার পরিমাণঃ<b class="text-yellow-500 text-lg ml-1">৳1500</b></li>
-                <li class="border-b pb-3 border-b-[#55555555] text-xs md:text-sm">নিশ্চিত করতে এখন আপনার BKASH মোবাইল মেনু পিন লিখুন।</li>
-                <li class="border-b pb-3 border-b-[#55555555] text-xs md:text-sm">সবকিছু ঠিক থাকলে, আপনি BKASH থেকে একটি নিশ্চিতকরণ বার্তা পাবেন।</li>
-                <li class="text-xs md:text-sm">বক্সে আপনার Transaction ID &amp; Number দিন এবং নিচের Confirm বাটনে ক্লিক করুন।</li>
-              </ul><br>
-            </div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <div style="display: flex;">
-              <div id="mtd_number" style="background:#2563EB;color:#fff;margin-top:10px;padding:10px;border-radius:5px 0px 0px 5px;width:90%;">
-              
-              
-
+              <div id="mtd_number" class="payment_method">
+                  Please Select Payment Method
               </div>
-              <div style="background:#2563EB;color:#fff;margin-top:10px;padding:10px;border-radius:0px 5px 5px 0px;width:10%" id="copy">Copy <i class="fa-regular fa-paste"></i></div>
             </div>
           </div>
 
 
           <script>
+            $(document).ready(function(){  
+              $("#method").on("change",function(){
+                var pmn_id = $(this).val();
+                $.ajax({
+                    url:"admin/config/ajax.php",
+                    type:"POST",
+                    data:
+                    {
+                      payment_method:"true",
+                      pmn_id:pmn_id,      
+                    },         
+                    success:function(data){
+                      $("#mtd_number").html(data);
+                      }
+                    });
+                })
 
-          // $(document).ready(function(){  
-          //     $("#method").on("change",function(){
-          //       // e.preventDefault();
-          //       console.log("pmn_id");
-          //       var pmn_id = $(this).val();
-          //       $.ajax({
-          //           url:"admin/config/ajax.php",
-          //           type:"POST",
-          //           data:
-          //           {
-          //             method_change:1,            
-          //             ticket_id : <?php echo $ticket_id;?>,
-          //             uid:<?php echo $id;?>,
-          //             msg:$("#message").val(),        
-          //           },         
-          //           success:function(data){
-          //             load();
-          //             }
-          //           });
-          //       })
-
-          //   })
-
-
-
-
-
+            })
 
 
 
@@ -185,3 +135,7 @@
 <!-- Header area -->
 <?php include("common/footer.php"); ?>
 <!-- Header area -->
+
+
+
+

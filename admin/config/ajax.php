@@ -219,6 +219,15 @@ exit;
 
 
 
+//Payment Method Show
+if(isset($_POST['payment_method']) && isset($_POST['pmn_id'])){  
+  $payment_method = $_POST['payment_method'];
+  $pmn_id = $_POST['pmn_id'];
+  $payment_method =_fetch("payment","id='$pmn_id'");
+  echo $payment_method['description'];
+ exit; }
+
+
 
 
 

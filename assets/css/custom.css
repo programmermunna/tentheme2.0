@@ -97,25 +97,46 @@
     justify-content: space-between;
     /* gap: 20px; */
 }
+
 .person>.img {
     width: 10%;
 }
+
 .person>.img>img {
     width: 50px;
     border-radius: 50%;
     margin: 0 auto;
 }
+
 .person>.img p {
     text-align: center;
     margin-top: 10px;
 }
+
 .person>.message {
     width: 88%;
 }
-.person>.message> p {
+
+.person>.message>p {
     margin-top: 10px;
     opacity: .5;
 }
-.user_chat{
+
+.user_chat {
     background: #48474715;
 }
+
+.payment_method {
+    background: green;
+    background: linear-gradient(130deg,#15367d,#2563EB,#0f3485);
+    color: #fff;
+    margin-top: 10px;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+
+
+
+
