@@ -32,16 +32,12 @@
               <h2 class="text-xl font-semibold text-cyan-800"><?php echo $data['pmn_method']?></h2>
             </div>
 
-            <div class="flex flex-col gap-y-1">
+            <div style="width:80%" class="flex flex-col gap-y-1">
               <label for="Payoneer Email">Receive Address</label>
-              <?php if($data["pmn_method"]== 'Bank'){?>
-              <textarea name="pmn_value" class="input" id="" cols="30" rows="10"><?php echo $data["pmn_info"]?></textarea>
-              <?php }else{?>
-                <input name="pmn_value" class="input" type="text" id="Payoneer Email" placeholder="Payoneer Email" value="<?php echo $data["pmn_info"]?>">
-              <?php }?>
+              <textarea name="pmn_value" class="summernote"><?php echo $data["description"]?></textarea>             
             </div>
 
-            <div class="flex flex-col gap-y-1">
+            <div style="width:20%"  class="flex flex-col gap-y-1">
               <label for="Status">Status</label>
               <select class="select" name="status" id="Status">
                 <?php 
@@ -67,6 +63,24 @@
         </div>
       </div>
   </main>
+
+<script>
+  $('.summernote').summernote({
+        placeholder: 'Write Something About Service',
+        tabsize: 2,
+        height: 100,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+      });
+</script>
+
 
   <script src="js/app.js"></script>
 </body>

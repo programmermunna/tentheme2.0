@@ -288,7 +288,7 @@
       </div>
       <hr class="my-0">
 
-      <!-- Sidebar Item -> products -->
+      <!-- Sidebar Item -> Pages -->
       <div class="sidebar_item overflow-hidden">
         <button class="ds_title" data-ref="page"><span class="text-xs transition-all text-pink-600"><i
               class="fa-solid fa-briefcase"></i></span><span class="tracking-wider block">Pages</span><span
@@ -302,9 +302,32 @@
             </a>
           </li>
           <li>
-            <a href="./pages.php">
+            <a href="./add-page.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
               <span>Add Page</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <hr class="my-0">
+
+      <!-- Sidebar Item -> Peyment Method -->
+      <div class="sidebar_item overflow-hidden">
+        <button class="ds_title" data-ref="payment_method"><span class="text-xs transition-all text-pink-600"><i
+              class="fa-solid fa-briefcase"></i></span><span class="tracking-wider block">Payment Method</span><span
+            class="text-xs opacity-50 transition-all"><i class="fa-solid fa-chevron-up"></i></span>
+        </button>
+        <ul class="ds_ul transition-all" data-ref="payment_method">
+          <li>
+            <a href="./payment-method.php">
+              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
+              <span>All Payment Method</span>
+            </a>
+          </li>
+          <li>
+            <a href="./add-payment-method.php">
+              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
+              <span>Add Payment Method</span>
             </a>
           </li>
         </ul>
