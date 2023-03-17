@@ -441,14 +441,15 @@ if(isset($_GET['product_id'])){
               </div>
             </div>
             <?php }?>
-
+            <br>
+  <br>
           </div>
         </div>
-
       </div>
     </div>
   </main>
 
+ 
   <!-- Header area -->
   <?php include("common/footer.php");?>
 <!-- Header area -->

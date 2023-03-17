@@ -99,14 +99,20 @@ $cr_url = substr($cr_url,strrpos($cr_url,'/')+1);
           <a class="flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white" href="blogs.php">Blogs</a>
         </li>
         <li>
-          <a class="flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white" href="team.php">Team</a>
+          <a class="flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white" href="blogs.php">Ticket</a>
         </li>
+        <!-- <li>
+          <a class="flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white" href="team.php">Team</a>
+        </li> -->
         <li class="relative header_sub_parent">
           <a class="header_sub_ul_toggle flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white"
             href="#">Pages</a>
           <div
             class="transition-all transform origin-top scale-y-0 py-2 absolute z-50 top-[100%] inset-x-0 mx-auto w-56 space-y-1">
             <ul class="bg-white p-3 rounded shadow-xl border">
+            <li><a href="about.php" class="custom_li_hover hover:text-white rounded shadow-sm px-3 py-2 block w-full">About Us </a></li>
+            <li><a href="contact.php" class="custom_li_hover hover:text-white rounded shadow-sm px-3 py-2 block w-full">Contact Us </a></li>
+            <li><a href="team.php" class="custom_li_hover hover:text-white rounded shadow-sm px-3 py-2 block w-full">Team </a></li>
                   <?php 
                   $pages = _get("pages","status='Published'");
                   while($page = mysqli_fetch_assoc($pages)){
@@ -119,19 +125,20 @@ $cr_url = substr($cr_url,strrpos($cr_url,'/')+1);
                   ?>
                   </a></li>
                   <?php }?>
-
-
             </ul>
           </div>
         </li>
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input style="border-radius: 5px;padding:5px;outline:none" type="search" placeholder="Search Now">
         
-        <li>
+        <!-- <li>
           <a class="flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white" href="about.php">About Us</a>
         </li>
         
         <li>
-          <a class="flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white" href="contact.php">Contact Us</a>
-        </li>
+          <a class="flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white" href="about.php">Contact Us</a>
+        </li> -->
 
         <?php if($header_social_link == 'checked'){ ?>
           <div class="flex space-x-5">
