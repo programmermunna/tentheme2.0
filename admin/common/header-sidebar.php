@@ -159,6 +159,23 @@
         </ul>
       </div>
       <hr class="my-0">
+      
+        <!-- Sidebar Item -> products -->
+        <div class="sidebar_item overflow-hidden">
+        <button class="ds_title" data-ref="discount"><span class="text-xs transition-all text-pink-600"><i
+              class="fa-solid fa-briefcase"></i></span><span class="tracking-wider block">Discount</span><span
+            class="text-xs opacity-50 transition-all"><i class="fa-solid fa-chevron-up"></i></span>
+        </button>
+        <ul class="ds_ul transition-all" data-ref="discount">         
+          <li>
+            <a href="./discount.php">
+              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
+              <span>Discount</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <hr class="my-0">
 
       
       <!-- Sidebar Item -> Deposit -->
@@ -351,6 +368,29 @@
             <a href="./reseller-docs.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
               <span>Reseller Documents</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <hr class="my-0">
+
+      <!-- Sidebar Item -> Resller System -->
+      <div class="sidebar_item overflow-hidden">
+        <button class="ds_title" data-ref="investor"><span class="text-xs transition-all text-pink-600"><i
+              class="fa-solid fa-briefcase"></i></span><span class="tracking-wider block">Investor</span><span
+            class="text-xs opacity-50 transition-all"><i class="fa-solid fa-chevron-up"></i></span>
+        </button>
+        <ul class="ds_ul transition-all" data-ref="investor">
+          <li>
+            <a href="./investors.php">
+              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
+              <span>Investor</span>
+            </a>
+          </li>
+          <li>
+            <a href="./investor-docs.php">
+              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
+              <span>Investor Documents</span>
             </a>
           </li>
         </ul>

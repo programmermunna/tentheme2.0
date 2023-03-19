@@ -55,6 +55,15 @@
                 </a>
               </li>
 
+              <li>
+                <a href="investor.php"
+                  class="text-sm flex items-center justify-start w-full gap-2 text-[#2a3744] hover:bg-[#2a3744] hover:text-white rounded-sm p-2 uppercase">
+                  <span class="text-xs"><i class="fa-solid fa-person-military-pointing"></i>
+                  </span>
+                  <span>Investor</span>
+                </a>
+              </li>
+
 
               <li>
                 <a href="tickets.php"
