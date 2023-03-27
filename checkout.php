@@ -50,6 +50,12 @@ if($id<1){
             while($data = mysqli_fetch_assoc($cart)){
               $cart_id = $data['cart_id'];
               $product = _fetch("products","id=$cart_id");
+
+              $investor_discount = $investor_docs['discount'];            
+              $sell_price = $product['sell_price'];
+              $product['sell_price'] = $sell_price - ($sell_price*$investor_discount)/100;
+
+              
               $total_price += $product['sell_price'];            
             ?>
             <div class="flex items-center justify-between gap-x-8 px-5 py-10 border-t relative">
@@ -95,6 +101,12 @@ if($id<1){
             while($data = mysqli_fetch_assoc($cart)){
               $cart_id = $data['cart_id'];
               $product = _fetch("products","id=$cart_id");
+
+              $investor_discount = $investor_docs['discount'];            
+              $sell_price = $product['sell_price'];
+              $product['sell_price'] = $sell_price - ($sell_price*$investor_discount)/100;
+
+
               $total_price += $product['sell_price'];
             ?>
             <div class="text-lg font-medium tracking-wide text-gray-500 justify-between flex items-center">
@@ -108,9 +120,7 @@ if($id<1){
           <div class="text-2xl font-semibold text-gray-700 items-center justify-between flex pt-5 border-t">
             <span>Total:</span>
             <span>BDT <del style="color:red;opacity:.5"><?php echo $total_price;?></del> <?php echo $total_price = $total_price - ($total_price*$reseller_discount)/100;?></span>
-            <!-- <span>BDT <?php echo $total_price -=1000;?></span> -->
           </div>
-
         </div>
 
         <?php 
@@ -118,7 +128,7 @@ if($id<1){
           $total_amount = $_POST['total_amount'];
           $old_balance = $person['balance'];
           if($old_balance>$total_amount){
-            $balance = _update("person","balance=balance-$total_amount","id=$id");            
+            $balance = _update("person","balance=balance-$total_amount","id=$id");
             $carts = _get("cart","status=0","pid=$id");
             while($cart = mysqli_fetch_assoc($carts)){
               $product_id = $cart['cart_id'];
@@ -136,7 +146,7 @@ if($id<1){
         }
         ?>
         <form action="" method="POST">
-          <input type="hidden" name="total_amount" value="<?php echo $total_price;?>">
+          <input type="hidden" name="total_amount" value="<?php echo $total_price; ?>">
           <button type="submit" name="submit" class="w-full py-3 shadow-lg rounded bg-blue-600 text-white focus:ring-2 ring-blue-600 ring-offset-1">Pay Now</button>
         </form>     
         

@@ -2,11 +2,24 @@
 <?php 
 
 if(isset($_GET['action'])){
-  $action = $_GET['action'];
-  $id = $_GET['id'];
-    $update = _update("person","investor='$action'","id=$id");
-    if($update){
-      header("location:investors.php?msg=$action Successfully");
+    $action = $_GET['action'];
+    $id = $_GET['id'];
+
+    if($action == 'Accepted'){
+      $check = _fetch("person","id=$id");
+      if($check['investor_order'] > 0){
+        header("location:investors.php?msg=Already Investor Ableable");
+      }else{
+        $update = _update("person","investor_order=10, investor='$action'","id=$id");
+        if($update){
+          header("location:investors.php?msg=$action Successfully");
+        }
+      }
+    }else{      
+      $update = _update("person","investor='$action'","id=$id");
+      if($update){
+        header("location:investors.php?msg=$action Successfully");
+      }
     }
 }
 
@@ -100,10 +113,10 @@ $rejected_resseler = mysqli_num_rows(_get("person","investor = 'Rejected'"));
                     $offset = ($page_no-1) * $total_records_per_page;
                     $previous_page = $page_no - 1;
                     $next_page = $page_no + 1;
-                    $adjacents = "2"; 
+                    $adjacents = "2";
 
-                    $person =_query("SELECT * FROM person WHERE investor!='' ORDER BY id DESC LIMIT $offset, $total_records_per_page");
-                    $total_records = mysqli_num_rows(_get("person","investor !=''"));
+                    $person =_query("SELECT * FROM person WHERE investor !='' ORDER BY id DESC LIMIT $offset, $total_records_per_page");
+                    $total_records = mysqli_num_rows(_get("person","investor !='' "));
 
                     $total_no_of_pages = ceil($total_records / $total_records_per_page);
                     $second_last = $total_no_of_pages - 1;
@@ -123,9 +136,9 @@ $rejected_resseler = mysqli_num_rows(_get("person","investor = 'Rejected'"));
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5">৳ <?php echo $data['balance']?></td>                        
                         <td class="p-4 text-sm font-bold text-green-500 whitespace-nowrap lg:p-5"><?php echo $data['investor']?></td>
                         <td class="text-center p-4 space-x-2 whitespace-nowrap lg:p-5">
-                          <a id="add_bank" href="investors.php?action=Accepted&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Accept</a>
+                          <a href="investors.php?action=Accepted&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Accept</a>
                           <a href="investors.php?action=Rejected&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Reject</a>
-                          <a id="add_bank" href="investors.php?action=&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Delete</a>
+                          <a href="investors.php?action=&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Delete</a>
                         </td>
                       </tr>
                       <?php }?>

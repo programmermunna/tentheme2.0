@@ -1,17 +1,24 @@
 <?php include("common/header-sidebar.php")?>
-<?php 
-  $investor_docs = _fetch("investor_docs","id=1");
-?>
+      <?php 
+        $investor_docs = _fetch("investor_docs","id=1");
+      ?>
         <div class="w-full space-y-10 p-6 lg:p-12 bg-white border border-gray-200 rounded">
-        <?php if(isset($_POST['discount_btn'])){
+        <?php if(isset($_POST['submit'])){
+            $pices = $_POST['pices'];
             $discount = $_POST['discount'];
-            $update = _update("investor_docs","discount='$discount'","id=1");
+            $update = _update("investor_docs","pices='$pices',discount='$discount'","id=1");
             if($update){
               header("location:investor-docs.php?msg=Successfully Updated");
             }
           }
             ?>
           <form class="space-y-6" action="" method="POST">
+            
+            <div class="flex flex-col gap-y-1">
+              <label for="pices">Total Products</label>
+              <input type="number" name="pices" class="input" placeholder="10" value="<?php echo $investor_docs['pices']?>">
+            </div>
+
             <div class="flex flex-col gap-y-1">
               <label for="investor_discount">investor Discount (As %)</label>
               <input type="number" name="discount" class="input" placeholder="10" value="<?php echo $investor_docs['discount']?>">
@@ -19,7 +26,7 @@
 
             <div class="col-span-2 flex justify-start">
               <div class="w-fit">
-                <button type="submit" name="discount_btn" class="button">Submit</button>
+                <button type="submit" name="submit" class="button">Submit</button>
               </div>
             </div>
           </form>

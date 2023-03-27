@@ -323,8 +323,6 @@ if(isset($_GET['product_id'])){
         </div>
 
 
-
-
         
         <!-- RightBar Info -->
         <div class="w-full lg:min-w-[350px] lg:w-[350px]">
@@ -345,7 +343,12 @@ if(isset($_GET['product_id'])){
                   </div>
                   <div class="flex items-start text-green-600">
                     <span class="text-sm">$.</span>
-                    <h4 class="text-xl font-semibold tracking-wide items_price"><?php echo $data['sell_price']?></h4>
+                    <h4 class="text-xl font-semibold tracking-wide items_price"><?php
+                    
+                    $investor_discount = $investor_docs['discount'];            
+                    $sell_price = $data['sell_price'];
+                    $data['sell_price'] = $sell_price - ($sell_price*$investor_discount)/100;                    
+                    echo $data['sell_price']?></h4>
                   </div>
                 </div>
 
@@ -435,7 +438,6 @@ if(isset($_GET['product_id'])){
                     <h2 class="text-base font-semibold text-gray-700 text-left w-7/12"><?php echo $similar['title']?></h2>
                     <img class="w-5/12" src="admin/upload/<?php echo $similar['file_name1']?>">
                   </div>
-                  <!-- <p class="text-gray-500 py-5 border-b">Lorem ipsum dolor sit amet consectetur.</p> -->
                 </a>
                 <?php }?>
               </div>
