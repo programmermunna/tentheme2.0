@@ -13,11 +13,14 @@ $person = _fetch("person","id=$id");
 $reseller_docs = _fetch("reseller_docs","id=1");
 $investor_docs = _fetch("investor_docs","id=1");
 
-// if($id>0){
-//     if($person['investor'] != 'Accpeted'){
-//     $investor_docs['discount'] = 0;  
-//   }
-// }
+if($id>0){
+  $person_investor = $person['investor']; 
+  if($person_investor != 'Accepted'){
+    $investor_docs['discount'] = 0;
+  }
+}else{
+  $investor_docs['discount'] = 0;
+}
 
 $website = _fetch("website","id=1");
 $limit_setting = _fetch("limit_setting","id=$id");

@@ -133,6 +133,14 @@ if($id<1){
             while($cart = mysqli_fetch_assoc($carts)){
               $product_id = $cart['cart_id'];
               $update_product = _update("products","sell=sell+1","id=$product_id");
+              $total_order = _update("person","total_order=total_order+1","id=$id");
+
+              if($person['investor_order'] > 0){
+                $check = _fetch("person","id=$id");
+                if($check['investor_order'] >0){
+                  $total_order = _update("person","investor_order=investor_order-1","id=$id");
+                }
+              }
             }
             $update_cart = _update("cart","status=1","pid=$id AND type='product'");
             if($update_cart && $balance){
