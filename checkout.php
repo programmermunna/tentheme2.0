@@ -118,8 +118,8 @@ if($id<1){
           </div>
 
           <div class="text-2xl font-semibold text-gray-700 items-center justify-between flex pt-5 border-t">
-            <span>Total:</span>
-            <span>BDT <del style="color:red;opacity:.5"><?php echo $total_price;?></del> <?php echo $total_price = $total_price - ($total_price*$reseller_discount)/100;?></span>
+            <span>Total:</span>            
+              <span>BDT <del style="color:red;opacity:.5"><?php echo $total_price;?></del> <?php echo $total_price = $total_price - ($total_price*$reseller_discount)/100;?></span>
           </div>
         </div>
 
