@@ -87,9 +87,9 @@
           $second_last = $total_no_of_pages - 1;
           }
           while($data = mysqli_fetch_assoc($products)){
-            $investor_discount = $investor_docs['discount'];            
+            $investor_discount = $investor_docs['discount'];
             $sell_price = $data['sell_price'];
-            $data['sell_price'] = $sell_price - ($sell_price*$investor_discount)/100;
+            $data['sell_price'] = $sell_price - ($sell_price*$sell_discount)/100;
 
             $author_id = $data['pid'];
             $author = _fetch("person","id=$author_id");

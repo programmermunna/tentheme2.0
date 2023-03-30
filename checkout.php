@@ -50,12 +50,9 @@ if($id<1){
             while($data = mysqli_fetch_assoc($cart)){
               $cart_id = $data['cart_id'];
               $product = _fetch("products","id=$cart_id");
-
-              $investor_discount = $investor_docs['discount'];            
+            
               $sell_price = $product['sell_price'];
-              $product['sell_price'] = $sell_price - ($sell_price*$investor_discount)/100;
-
-              
+              $product['sell_price'] = $sell_price - ($sell_price*$sell_discount)/100;              
               $total_price += $product['sell_price'];            
             ?>
             <div class="flex items-center justify-between gap-x-8 px-5 py-10 border-t relative">
@@ -102,11 +99,8 @@ if($id<1){
               $cart_id = $data['cart_id'];
               $product = _fetch("products","id=$cart_id");
 
-              $investor_discount = $investor_docs['discount'];            
               $sell_price = $product['sell_price'];
-              $product['sell_price'] = $sell_price - ($sell_price*$investor_discount)/100;
-
-
+              $product['sell_price'] = $sell_price - ($sell_price*$sell_discount)/100;
               $total_price += $product['sell_price'];
             ?>
             <div class="text-lg font-medium tracking-wide text-gray-500 justify-between flex items-center">
@@ -119,7 +113,7 @@ if($id<1){
 
           <div class="text-2xl font-semibold text-gray-700 items-center justify-between flex pt-5 border-t">
             <span>Total:</span>            
-              <span>BDT <del style="color:red;opacity:.5"><?php echo $total_price;?></del> <?php echo $total_price = $total_price - ($total_price*$reseller_discount)/100;?></span>
+              <span>BDT <?php echo $total_price;?></span>
           </div>
         </div>
 
@@ -136,12 +130,9 @@ if($id<1){
               $total_order = _update("person","total_order=total_order+1","id=$id");
 
               if($person['investor_order'] > 0){
-                $check = _fetch("person","id=$id");
-                if($check['investor_order'] >0){
-                  $total_order = _update("person","investor_order=investor_order-1","id=$id");
+                  $investor_order = _update("person","investor_order=investor_order-1","id=$id");
                 }
               }
-            }
             $update_cart = _update("cart","status=1","pid=$id AND type='product'");
             if($update_cart && $balance){
               $msg = "Congratulations for Purchase.";

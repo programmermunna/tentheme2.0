@@ -66,11 +66,9 @@ if(isset($_GET['cart'])){
             while($data = mysqli_fetch_assoc($cart)){
               $cart_id = $data['cart_id'];
               $product = _fetch("products","id=$cart_id");
-
-
-              $investor_discount = $investor_docs['discount'];            
+                         
               $sell_price = $product['sell_price'];
-              $product['sell_price'] = $sell_price - ($sell_price*$investor_discount)/100;
+              $product['sell_price'] = $sell_price - ($sell_price*$sell_discount)/100;
 
               $total_price += $product['sell_price'];
             

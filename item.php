@@ -343,12 +343,13 @@ if(isset($_GET['product_id'])){
                   </div>
                   <div class="flex items-start text-green-600">
                     <span class="text-sm">$.</span>
-                    <h4 class="text-xl font-semibold tracking-wide items_price"><?php
-                    
-                    $investor_discount = $investor_docs['discount'];            
+                    <h4 class="text-xl font-semibold tracking-wide items_price">
+                    <?php                               
                     $sell_price = $data['sell_price'];
-                    $data['sell_price'] = $sell_price - ($sell_price*$investor_discount)/100;                    
-                    echo $data['sell_price']?></h4>
+                    $data['sell_price'] = $sell_price - ($sell_price*$sell_discount)/100;                    
+                    echo $data['sell_price'];
+                    ?>
+                    </h4>
                   </div>
                 </div>
 
